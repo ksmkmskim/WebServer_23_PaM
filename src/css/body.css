@@ -1,0 +1,5 @@
+@charset "UTF-8";
+body{
+	min-width: 1280px;
+	overflow: scroll;
+}

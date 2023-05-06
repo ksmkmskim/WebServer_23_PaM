@@ -1,0 +1,16 @@
+@charset "UTF-8";
+#footer_info{
+	background-color: rgb(59, 56, 56);
+	text-align: center;
+	height: 100px;
+	padding: 10px 0px;
+}
+#footer_info > ul{
+	display: block;
+	list-style-type: none;
+}
+#footer_info > ul > li{
+	display: inline;
+	size: 5pt;
+	color: white;
+}

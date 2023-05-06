@@ -1,0 +1,35 @@
+@charset "UTF-8";
+#bar{
+	background-color: rgb(175, 225, 237);
+	margin: 0;
+	height: 38px;
+}
+#bar > *{
+	vertical-align: middle;
+}
+
+#bar_user{
+	position: relative;
+	left: 60%;
+}
+
+#bar_user > span > ul{
+	list-style-type: none;
+	display: inline;
+	
+	padding: 0;
+	padding-left: 10px;
+}
+#bar_user > span > ul > li{
+	display: inline;
+	color: rgb(80, 84, 85);
+	size: 8pt;
+}
+#bar_user > span > ul > li > a{
+	color: rgb(80, 84, 85);
+	text-decoration: none;
+	size: 8pt;
+}
+#bar_user > span > ul > li > a:hover{
+	text-decoration: underline;
+}
