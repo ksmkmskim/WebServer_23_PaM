@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 	<title>Pat & Mat</title>
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
-	<link rel="stylesheet" href="/PaM/src/css/footer.css" /> <!-- footer css -->
 	<style>
 		
 		/*====================================   header   =====================================*/
