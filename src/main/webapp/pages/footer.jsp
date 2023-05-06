@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/PaM/src/css/footer.css" /> <!-- footer css --> <!-- ??? -->
+	<link rel="stylesheet" href="/PaM/src/css/footer.css" /> <!-- footer css -->
 </head>
 <body>
 	<footer>

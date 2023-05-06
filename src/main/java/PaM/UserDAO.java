@@ -13,12 +13,14 @@ public class UserDAO {
 	PreparedStatement pstmt;
 	
 	final String JDBC_DRIVER = "org.h2.Driver";
-	final String JDBC_URL = "jdbc:h2:tcp://locahost/C:\\Users\\Administrator\\Desktop\\4-1\\웹서버프로그래밍\\기말프로젝트/PaMDB";
-	
+	final String JDBC_URL = "jdbc:h2:tcp://localhost/D:\\Git\\WebServer_23_PaM\\database\\PaMDB";
+	final String JDBC_USER = "admin";
+	final String JDBC_PASSWD = "admin";
+	// JDBC_URL 로컬 환경마다 변경 필요 -> 학교 서버에 구축해서 vpn으로 접속해서 사용할 수 있도록 하면 좋을 듯
 	public void open() {
 		try {
 			Class.forName(JDBC_DRIVER);
-			conn = DriverManager.getConnection(JDBC_URL, "admin", "admin");
+			conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWD);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -35,7 +37,7 @@ public class UserDAO {
 	
 	public void addUser(User u) {
 		open();
-		String sql = "insert into user(user_id, user_pw, user_name, user_tel, user_addr, user_permission) values(?,?,?,?,?,?)";
+		String sql = "insert into user_table(user_id, user_pw, user_name, user_tel, user_addr, user_permission) values(?,?,?,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -55,7 +57,7 @@ public class UserDAO {
 	
 	public User getUser(String uid) {
 		open();
-		String sql = "select * from user where user_id=?";
+		String sql = "select * from user_table where user_id=?";
 		User u = new User();
 		
 		try {
@@ -63,12 +65,14 @@ public class UserDAO {
 			pstmt.setString(1, uid);
 			ResultSet rs = pstmt.executeQuery();
 			
-			u.setUser_id(rs.getString("user_id"));
-			u.setUser_pw(rs.getString("user_pw"));
-			u.setUser_name(rs.getString("user_name"));
-			u.setUser_tel(rs.getString("user_tel"));
-			u.setUser_addr(rs.getString("user_addr"));
-			u.setUser_permission(rs.getInt("user_permission"));
+			if(rs.next()) {
+				u.setUser_id(rs.getString("user_id"));
+				u.setUser_pw(rs.getString("user_pw"));
+				u.setUser_name(rs.getString("user_name"));
+				u.setUser_tel(rs.getString("user_tel"));
+				u.setUser_addr(rs.getString("user_addr"));
+				u.setUser_permission(rs.getInt("user_permission"));
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

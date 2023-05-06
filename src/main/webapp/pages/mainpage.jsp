@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,6 @@
 	<title>Pat & Mat</title>
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 	<style>
-		
 		/*====================================   header   =====================================*/
 		#header{
 			text-align: center;
@@ -136,7 +136,13 @@
 			box-shadow: 0px 0px 20px #1f94b1;
 		}
 		/*====================================   main   =====================================*/
+		main > hr{
+			width: 1100px;
+			margin-top: 20px;
+		}
+		
 		#post_container{
+			text-align: center;
 		}
 		#post_container > ul{
 			display: block;
@@ -144,6 +150,20 @@
 		}
 		#post_container > ul > li{
 			display: inline;
+		}
+		
+		.post{
+			display: inline;
+			margin: 5px;
+		}
+		.post > img{
+			height: 125px;
+			width: 183px;
+			margin-top: 15px;
+			border-radius: 10px;
+		}
+		.post > img:hover {
+			filter: brightness(40%);
 		}
 	</style>
 
@@ -169,45 +189,45 @@
 						<tr>
 							<td>차종</td>
 							<td>
-								<input type="checkbox" name="car_type" value="super">슈퍼카
-								<input type="checkbox" name="car_type" value="sport">스포츠카
-								<input type="checkbox" name="car_type" value="coupe">쿠페
-								<input type="checkbox" name="car_type" value="muscle">머슬카
-								<input type="checkbox" name="car_type" value="sedan">세단
-								<input type="checkbox" name="car_type" value="suv">SUV
-								<input type="checkbox" name="car_type" value="pickup">픽업 트럭
-								<input type="checkbox" name="car_type" value="truck">트럭
+								<input type="checkbox" name="car_type" value="슈퍼카">슈퍼카
+								<input type="checkbox" name="car_type" value="스포츠카">스포츠카
+								<input type="checkbox" name="car_type" value="쿠페">쿠페
+								<input type="checkbox" name="car_type" value="머슬카">머슬카
+								<input type="checkbox" name="car_type" value="세단">세단
+								<input type="checkbox" name="car_type" value="SUV">SUV
+								<input type="checkbox" name="car_type" value="픽업 트럭">픽업 트럭
+								<input type="checkbox" name="car_type" value="트럭">트럭
 							</td>
 						</tr>
 						<tr>
 							<td>브랜드</td>
 							<td>
-								<input type="checkbox" name="car_brand" value="hyundai">현대
-								<input type="checkbox" name="car_brand" value="kia">기아
-								<input type="checkbox" name="car_brand" value="renault">르노
-								<input type="checkbox" name="car_brand" value="toyota">도요타
-								<input type="checkbox" name="car_brand" value="honda">혼다<br>
-								<input type="checkbox" name="car_brand" value="nissan">닛산
-								<input type="checkbox" name="car_brand" value="volvo">볼보
-								<input type="checkbox" name="car_brand" value="koenigsegg">코닉세그
-								<input type="checkbox" name="car_brand" value="benz">메르세데스-벤츠
-								<input type="checkbox" name="car_brand" value="porsche">포르쉐<br>
-								<input type="checkbox" name="car_brand" value="volkswagen">폭스바겐
-								<input type="checkbox" name="car_brand" value="bmw">BMW
-								<input type="checkbox" name="car_brand" value="audi">아우디
-								<input type="checkbox" name="car_brand" value="rolls">롤스로이스
-								<input type="checkbox" name="car_brand" value="bentley">벤틀리<br>
-								<input type="checkbox" name="car_brand" value="mclaren">맥라렌
-								<input type="checkbox" name="car_brand" value="jagur">재규어
-								<input type="checkbox" name="car_brand" value="chevrolet">쉐보레
-								<input type="checkbox" name="car_brand" value="jeep">지프
-								<input type="checkbox" name="car_brand" value="tesla">테슬라<br>
-								<input type="checkbox" name="car_brand" value="ford">포드
-								<input type="checkbox" name="car_brand" value="dodge">닷지
-								<input type="checkbox" name="car_brand" value="ferrari">페라리
-								<input type="checkbox" name="car_brand" value="lamborghini">람보르기니
-								<input type="checkbox" name="car_brand" value="maserati">마세라티
-								<input type="checkbox" name="car_brand" value="pagani">파가니
+								<input type="checkbox" name="car_brand" value="Hyundai">현대
+								<input type="checkbox" name="car_brand" value="KIA">기아
+								<input type="checkbox" name="car_brand" value="Renault">르노
+								<input type="checkbox" name="car_brand" value="Toyota">도요타
+								<input type="checkbox" name="car_brand" value="Honda">혼다<br>
+								<input type="checkbox" name="car_brand" value="Nissan">닛산
+								<input type="checkbox" name="car_brand" value="Volvo">볼보
+								<input type="checkbox" name="car_brand" value="Koenigsegg">코닉세그
+								<input type="checkbox" name="car_brand" value="Benz">메르세데스-벤츠
+								<input type="checkbox" name="car_brand" value="Porsche">포르쉐<br>
+								<input type="checkbox" name="car_brand" value="Volkswagen">폭스바겐
+								<input type="checkbox" name="car_brand" value="BMW">BMW
+								<input type="checkbox" name="car_brand" value="Audi">아우디
+								<input type="checkbox" name="car_brand" value="Rolls">롤스로이스
+								<input type="checkbox" name="car_brand" value="Bentley">벤틀리<br>
+								<input type="checkbox" name="car_brand" value="McLaren">맥라렌
+								<input type="checkbox" name="car_brand" value="Jagur">재규어
+								<input type="checkbox" name="car_brand" value="Chevrolet">쉐보레
+								<input type="checkbox" name="car_brand" value="Jeep">지프
+								<input type="checkbox" name="car_brand" value="Tesla">테슬라<br>
+								<input type="checkbox" name="car_brand" value="Ford">포드
+								<input type="checkbox" name="car_brand" value="Dodge">닷지
+								<input type="checkbox" name="car_brand" value="Ferrari">페라리
+								<input type="checkbox" name="car_brand" value="Lamborghini">람보르기니
+								<input type="checkbox" name="car_brand" value="Maserati">마세라티
+								<input type="checkbox" name="car_brand" value="Pagani">파가니
 							</td>
 						</tr>
 					</table>
@@ -220,9 +240,13 @@
 	</header>
 	
 	<main>
-		<div id="post_container">		<!-- 게시물을 표시하는 동적인 부분 -->
+		<hr>
+		<div id="post_container">		<!-- 포스트 이동 추가, 마우스 올릴 시 정보표시 기능 추가 필요 -->
 			<ul>
-				<li><div class="post"></div></li>
+				<c:forEach var="p" items="${posts}" varStatus="status">
+					<li><div class="post" onClick="alert('post로 이동')"><img src="${p.getImg_list().get(0)}"></div></li>
+					<c:if test="${(status.count % 4) == 0}"><br></c:if>
+				</c:forEach> 
 			</ul>
 		</div>
 	</main>

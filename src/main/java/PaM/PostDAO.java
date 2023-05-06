@@ -13,12 +13,15 @@ public class PostDAO {
 	PreparedStatement pstmt;
 	
 	final String JDBC_DRIVER = "org.h2.Driver";
-	final String JDBC_URL = "jdbc:h2:tcp://locahost/C:\\Users\\Administrator\\Desktop\\4-1\\웹서버프로그래밍\\기말프로젝트/PaMDB";
+	final String JDBC_URL = "jdbc:h2:tcp://localhost/D:\\Git\\WebServer_23_PaM\\database\\PaMDB";
+	final String JDBC_USER = "admin";
+	final String JDBC_PASSWD = "admin";
+	// JDBC_URL 로컬 환경마다 변경 필요 -> 학교 서버에 구축해서 vpn으로 접속해서 사용할 수 있도록 하면 좋을 듯
 	
 	public void open() {
 		try {
 			Class.forName(JDBC_DRIVER);
-			conn = DriverManager.getConnection(JDBC_URL, "admin", "admin");
+			conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWD);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -35,16 +38,16 @@ public class PostDAO {
 	
 	public void addPost(Post p) {
 		open();
-		String sql_post = "insert into post(car_name, car_brand, car_type, car_price, car_mile, car_etc, post_date, post_user) values(?, ?, ?, ?, ?, ?, ?, ?)";
-		String sql_img = "insert into img(post_id, car_img) values(?, ?)";
+		String sql_post = "insert into post_table(car_name, car_brand, car_type, car_price, car_mile, car_etc, post_date, post_user) values(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql_img = "insert into img_table(img_post_id, car_img) values(?, ?)";
 				
 		try {
 			pstmt = conn.prepareStatement(sql_post);
 			pstmt.setString(1, p.getCar_name());
 			pstmt.setString(2, p.getCar_brand());
 			pstmt.setString(3, p.getCar_type());
-			pstmt.setInt(4, p.getCar_price());
-			pstmt.setInt(5, p.getCar_mile());
+			pstmt.setLong(4, p.getCar_price());
+			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
 			pstmt.setString(7, p.getPost_date());
 			pstmt.setString(8, p.getPost_user().getUser_id());
@@ -67,17 +70,17 @@ public class PostDAO {
 	
 	public void revisePost(Post p) {
 		open();
-		String sql_post = "update post set car_name=? car_brand=? car_type=? car_price=? car_mile=? car_etc=? where post_id=?";
-		String sql_del_img = "delete from img where post_id=?";
-		String sql_add_img = "insert into img(post_id, car_img) values(?, ?)";
+		String sql_post = "update post_table set car_name=? car_brand=? car_type=? car_price=? car_mile=? car_etc=? where post_id=?";
+		String sql_del_img = "delete from img_table where img_post_id=?";
+		String sql_add_img = "insert into img_table(img_post_id, car_img) values(?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql_post);
 			pstmt.setString(1, p.getCar_name());
 			pstmt.setString(2, p.getCar_brand());
 			pstmt.setString(3, p.getCar_type());
-			pstmt.setInt(4, p.getCar_price());
-			pstmt.setInt(5, p.getCar_mile());
+			pstmt.setLong(4, p.getCar_price());
+			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
 			pstmt.setInt(7, p.getPost_id());
 			pstmt.executeUpdate();
@@ -103,7 +106,7 @@ public class PostDAO {
 	
 	public void deletePost(Post p) {
 		open();
-		String sql = "delete from post where post_id=?";
+		String sql = "delete from post_table where post_id=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -118,8 +121,8 @@ public class PostDAO {
 	
 	public Post getPost(int pid) {
 		open();
-		String sql_post = "select * from post where post_id=?";
-		String sql_img = "select * from post where post_id=?";
+		String sql_post = "select * from post_table where post_id=?";
+		String sql_img = "select * from img_table where img_post_id=?";
 		Post p = new Post();
 		List<String> imgs = new ArrayList<>();
 		UserDAO udao = new UserDAO();
@@ -129,24 +132,27 @@ public class PostDAO {
 			pstmt.setInt(1, pid);
 			ResultSet rs = pstmt.executeQuery();
 			
-			p.setPost_id(rs.getInt("post_id"));
-			p.setCar_name(rs.getString("car_name"));
-			p.setCar_brand(rs.getString("car_brand"));
-			p.setCar_type(rs.getString("car_type"));
-			p.setCar_price(rs.getInt("car_price"));
-			p.setCar_mile(rs.getInt("car_mile"));
-			p.setCar_etc(rs.getString("car_etc"));
-			p.setPost_date(rs.getString("car_date"));
-			p.setPost_user(udao.getUser(rs.getString("post_user")));
-			
-			pstmt = conn.prepareStatement(sql_img);
-			pstmt.setInt(1, pid);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				imgs.add(rs.getString("car_img"));
+			if(rs.next()) {
+				p.setPost_id(rs.getInt("post_id"));
+				p.setCar_name(rs.getString("car_name"));
+				p.setCar_brand(rs.getString("car_brand"));
+				p.setCar_type(rs.getString("car_type"));
+				p.setCar_price(rs.getLong("car_price"));
+				p.setCar_mile(rs.getLong("car_mile"));
+				p.setCar_etc(rs.getString("car_etc"));
+				p.setPost_date(rs.getString("post_date"));
+				p.setPost_user(udao.getUser(rs.getString("post_user")));
+				
+				pstmt = conn.prepareStatement(sql_img);
+				pstmt.setInt(1, pid);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					imgs.add(rs.getString("car_img"));
+				}
+				p.setImg_list(imgs);
+				System.out.println(p);
 			}
-			p.setImg_list(imgs);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -158,7 +164,7 @@ public class PostDAO {
 	
 	public List<Post> getPostList(List<String> filter_b, List<String> filter_t, String search_n){
 		open();
-		String sql = "select * from post";
+		String sql = "select * from post_table";
 		List<Post> posts = new ArrayList<>();
 		boolean flag = false;
 		
@@ -197,11 +203,11 @@ public class PostDAO {
 				sql += " where car_name like '%" + search_n + "%'";
 			}
 		}
+		sql += ";";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next())
+			while(rs.next()) // 문제 발생 지점
 			{
 				posts.add(this.getPost(rs.getInt("post_id")));
 			}

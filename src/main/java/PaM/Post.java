@@ -8,8 +8,8 @@ public class Post {
 	private String car_name;
 	private String car_brand;
 	private String car_type;
-	private int car_price;
-	private int car_mile;
+	private long car_price;
+	private long car_mile;
 	private String car_etc;
 	private String post_date;
 	private User post_user;
@@ -39,16 +39,16 @@ public class Post {
 	public void setCar_type(String car_type) {
 		this.car_type = car_type;
 	}
-	public int getCar_price() {
+	public long getCar_price() {
 		return car_price;
 	}
-	public void setCar_price(int car_price) {
+	public void setCar_price(long car_price) {
 		this.car_price = car_price;
 	}
-	public int getCar_mile() {
+	public long getCar_mile() {
 		return car_mile;
 	}
-	public void setCar_mile(int car_mile) {
+	public void setCar_mile(long car_mile) {
 		this.car_mile = car_mile;
 	}
 	public String getCar_etc() {
@@ -74,5 +74,24 @@ public class Post {
 	}
 	public void setImg_list(List<String> img_list) {
 		this.img_list = img_list;
+	}
+	
+	@Override
+	public String toString() {
+		String s = "post_id:" + post_id +
+				"\ncar_name: " + car_name +
+				"\ncar_brand: " + car_brand +
+				"\ncar_type: " + car_type +
+				"\ncar_price: " + car_price +
+				"\ncar_mile: " + car_mile +
+				"\ncar_etc: " + car_etc +
+				"\npost_date: " + post_date +
+				"\npost_user: " + post_user +
+				"\nimg_list: \n";
+		for(String img : img_list) {
+			s += "\t" + img + "\n";
+		}
+		
+		return s;
 	}
 }
