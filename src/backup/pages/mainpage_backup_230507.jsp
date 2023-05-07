@@ -13,7 +13,7 @@
 			text-align: center;
 		}
 		
-		#header_logo_l > a > img{
+		#header_logo_l > img{
 			margin-top: 20px;
 			border: 5px;
 			border-color: black;
@@ -167,70 +167,17 @@
 			filter: brightness(40%);
 		}
 	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-		function filterPost(){
-		    var url="http://localhost:8080/PaM/maincontrol";
-		    let types = document.getElementsByName("car_type");
-		    let brands = document.getElementsByName("car_brand");
-		    let search = document.getElementsByName("search");
-
-		    let type_list = new Array();
-		    let brand_list = new Array();
-
-		    for(var i=0; i<types.length; i++){
-		    	if(types[i].checked){
-		    		type_list.push(types[i].value);
-		    	}
-		    }
-		    for(var i=0; i<brands.length; i++){
-		    	if(brands[i].checked){
-		    		brand_list.push(brands[i].value);
-		    	}
-		    }
-
-		    console.log(type_list);
-		    console.log(brand_list);
-		    
-		    $.ajax({
-		        type:"POST",
-		        url:url,
-		        dataType:"json",
-		        data:{
-		            car_type : type_list,
-		            car_brand : brand_list,
-		            search : $(search).val()
-		        },
-		        success : function(data){
-		        	console.log(data);
-		        	$('#post_container>ul').empty();
-		            for(var i=0; i < data.length; i++){
-		            	var $li=$('<li><div class="post" onClick="alert('+'post로 이동'+')"><img src="'+data[i].img_list[0]+'"></div></li>');
-		            	if((i % 4 == 0) && i != 0){
-		            		var $br=$('<br>');
-		            		$br.appendTo($('#post_container>ul'));
-		            	}
-			            $li.appendTo($('#post_container>ul'));
-		            }
-		        },
-		        error : function(request,status,error){
-		            alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
-		            alert(e);
-		        }
-		    })
-		}
-	</script>
 </head>
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
 	
 	<header>
 		<div id="header">
-			<div id="header_logo_l"><a href="/PaM/maincontrol"><img src="/PaM/src/img/logo_l.png" width="330"></a></div>	<!-- 클릭시 메인페이지 이동 추가 필요-->
+			<div id="header_logo_l" onClick="location='/PaM/maincontrol'"><img src="/PaM/src/img/logo_l.png" width="330"></div>	<!-- 클릭시 메인페이지 이동 추가 필요-->
 			<div id="header_search_bar">
 				<fieldset class="field-container">
 					<input type="text" name="search" placeholder="차량 검색" class="field">
-					<div class="icon-container" onClick="filterPost()">		<!-- onClick 값 수정 필요 -->
+					<div class="icon-container" onClick="location='/PaM/maincontrol'">		<!-- onClick 값 수정 필요 -->
 						<div class="icon-search"></div>
 					</div>
 				</fieldset>
@@ -256,29 +203,28 @@
 							<td>
 								<input type="checkbox" name="car_brand" value="Hyundai">현대
 								<input type="checkbox" name="car_brand" value="KIA">기아
-								<input type="checkbox" name="car_brand" value="Toyota">도요타
-								<input type="checkbox" name="car_brand" value="Honda">혼다
-								<input type="checkbox" name="car_brand" value="Nissan">닛산<br>
 								<input type="checkbox" name="car_brand" value="Renault">르노
-								<input type="checkbox" name="car_brand" value="Bugatti">부가티
+								<input type="checkbox" name="car_brand" value="Toyota">도요타
+								<input type="checkbox" name="car_brand" value="Honda">혼다<br>
+								<input type="checkbox" name="car_brand" value="Nissan">닛산
 								<input type="checkbox" name="car_brand" value="Volvo">볼보
 								<input type="checkbox" name="car_brand" value="Koenigsegg">코닉세그
-								<input type="checkbox" name="car_brand" value="Benz">메르세데스-벤츠<br>
-								<input type="checkbox" name="car_brand" value="Porsche">포르쉐
+								<input type="checkbox" name="car_brand" value="Benz">메르세데스-벤츠
+								<input type="checkbox" name="car_brand" value="Porsche">포르쉐<br>
 								<input type="checkbox" name="car_brand" value="Volkswagen">폭스바겐
 								<input type="checkbox" name="car_brand" value="BMW">BMW
 								<input type="checkbox" name="car_brand" value="Audi">아우디
-								<input type="checkbox" name="car_brand" value="Rolls">롤스로이스<br>
-								<input type="checkbox" name="car_brand" value="Bentley">벤틀리
+								<input type="checkbox" name="car_brand" value="Rolls">롤스로이스
+								<input type="checkbox" name="car_brand" value="Bentley">벤틀리<br>
 								<input type="checkbox" name="car_brand" value="McLaren">맥라렌
 								<input type="checkbox" name="car_brand" value="Jagur">재규어
 								<input type="checkbox" name="car_brand" value="Chevrolet">쉐보레
-								<input type="checkbox" name="car_brand" value="Jeep">지프<br>
-								<input type="checkbox" name="car_brand" value="Tesla">테슬라
+								<input type="checkbox" name="car_brand" value="Jeep">지프
+								<input type="checkbox" name="car_brand" value="Tesla">테슬라<br>
 								<input type="checkbox" name="car_brand" value="Ford">포드
 								<input type="checkbox" name="car_brand" value="Dodge">닷지
 								<input type="checkbox" name="car_brand" value="Ferrari">페라리
-								<input type="checkbox" name="car_brand" value="Lamborghini">람보르기니<br>
+								<input type="checkbox" name="car_brand" value="Lamborghini">람보르기니
 								<input type="checkbox" name="car_brand" value="Maserati">마세라티
 								<input type="checkbox" name="car_brand" value="Pagani">파가니
 							</td>

@@ -10,7 +10,7 @@
 <body>
 	<nav>
 		<div id="bar">
-			<span id="bar_logo_s"><img src="/PaM/src/img/logo_s.png" width="209"></span>	<!-- 클릭 시 메인페이지 이동 추가 필요 -->
+			<span id="bar_logo_s"><a href="/PaM/maincontrol"><img src="/PaM/src/img/logo_s.png" width="209"></a></span>	<!-- 클릭 시 메인페이지 이동 추가 필요 -->
 			<span id="bar_user">
 				<span><img src="/PaM/src/img/human_img.png" width="10.203"></span>			<!-- 마이페이지 만들게 된다면 마우스와 상호작용 추가 필요 -->
 				<span>

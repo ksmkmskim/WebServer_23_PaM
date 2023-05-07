@@ -151,7 +151,7 @@ public class PostDAO {
 					imgs.add(rs.getString("car_img"));
 				}
 				p.setImg_list(imgs);
-				System.out.println(p);
+				//System.out.println(p);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -183,7 +183,7 @@ public class PostDAO {
 		}
 		if(!filter_t.isEmpty()) {
 			if(flag) {
-				sql += " and car_type in('";
+				sql += " and car_type in(";
 			} else {
 				flag = true;
 				sql += " where car_type in(";
@@ -204,6 +204,7 @@ public class PostDAO {
 			}
 		}
 		sql += ";";
+		System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

@@ -35,11 +35,21 @@ public class MainPageController extends HttpServlet {
 		// TODO Auto-generated method stub
 		PostDAO pdao = new PostDAO();
 		
-		List<Post> post_list = pdao.getPostList(new ArrayList<String>(), new ArrayList<String>(), "");
+		List<String> types = new ArrayList<>();
+		if(request.getParameterValues("car_type") != null) {
+			types.addAll(Arrays.asList(request.getParameterValues("car_type")));
+		}
+		List<String> brands = new ArrayList<>();
+		if(request.getParameterValues("car_brand") != null) {
+			brands.addAll(Arrays.asList(request.getParameterValues("car_brand")));
+		}
+		String search = request.getParameter("search");
+		//System.out.println(search);
+		
+		List<Post> post_list = pdao.getPostList(brands, types, search);
 		if(!post_list.isEmpty()) {
 			request.setAttribute("posts", post_list);
 		}
-		
 		getServletContext().getRequestDispatcher(START_PAGE).forward(request, response);
 	}
 
@@ -52,30 +62,24 @@ public class MainPageController extends HttpServlet {
 		PostDAO pdao = new PostDAO();
 		
 		List<String> types = new ArrayList<>();
-		if(request.getParameterValues("car_type[]") != null) {
-			types.addAll(Arrays.asList(request.getParameterValues("car_type[]")));
+		if(request.getParameterValues("car_type") != null) {
+			types.addAll(Arrays.asList(request.getParameterValues("car_type")));
 			System.out.println(types.get(0));
-		}else {System.out.println("types is null");}
-
+		}
 		List<String> brands = new ArrayList<>();
-		if(request.getParameterValues("car_brand[]") != null) {
-			brands.addAll(Arrays.asList(request.getParameterValues("car_brand[]")));
+		if(request.getParameterValues("car_brand") != null) {
+			brands.addAll(Arrays.asList(request.getParameterValues("car_brand")));
 			System.out.println(brands.get(0));
 		}
-		
 		String search = request.getParameter("search");
 		System.out.println(search);
 		
 		List<Post> post_list = pdao.getPostList(brands, types, search);
-		/*
 		if(!post_list.isEmpty()) {
 			ObjectMapper om = new ObjectMapper();
 			String result = om.writeValueAsString(post_list);
 			response.getWriter().write(result);
-		}*/
-		ObjectMapper om = new ObjectMapper();
-		String result = om.writeValueAsString(post_list);
-		response.getWriter().write(result);
+		}
 		
 	}
 
