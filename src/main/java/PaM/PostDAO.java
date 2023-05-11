@@ -46,7 +46,7 @@ public class PostDAO {
 			pstmt.setString(1, p.getCar_name());
 			pstmt.setString(2, p.getCar_brand());
 			pstmt.setString(3, p.getCar_type());
-			pstmt.setLong(4, p.getCar_price());
+			pstmt.setString(4, p.getCar_price());
 			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
 			pstmt.setString(7, p.getPost_date());
@@ -79,7 +79,7 @@ public class PostDAO {
 			pstmt.setString(1, p.getCar_name());
 			pstmt.setString(2, p.getCar_brand());
 			pstmt.setString(3, p.getCar_type());
-			pstmt.setLong(4, p.getCar_price());
+			pstmt.setString(4, p.getCar_price());
 			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
 			pstmt.setInt(7, p.getPost_id());
@@ -204,7 +204,7 @@ public class PostDAO {
 			}
 		}
 		sql += ";";
-		System.out.println(sql);
+		//System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

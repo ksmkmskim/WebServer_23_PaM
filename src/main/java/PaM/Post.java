@@ -2,6 +2,7 @@ package PaM;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 
 public class Post {
 	private int post_id;
@@ -39,8 +40,9 @@ public class Post {
 	public void setCar_type(String car_type) {
 		this.car_type = car_type;
 	}
-	public long getCar_price() {
-		return car_price;
+	public String getCar_price() {
+		DecimalFormat decFormat = new DecimalFormat("###,###");
+		return decFormat.format(car_price);
 	}
 	public void setCar_price(long car_price) {
 		this.car_price = car_price;

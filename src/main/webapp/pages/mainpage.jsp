@@ -137,7 +137,7 @@
 		}
 		/*====================================   main   =====================================*/
 		main > hr{
-			width: 1100px;
+			width: 1300px;
 			margin-top: 20px;
 		}
 		
@@ -150,24 +150,46 @@
 			padding: 0px;
 		}
 		#post_container > ul > li{
-			display: inline;
+			display: inline-block;
+			width: 305.6px;
 		}
 		
 		.post{
-			display: inline;
+			display: inline-block;
 			margin: 5px;
+			position: relative;
 		}
 		.post > img{
-			height: 125px;
-			width: 183px;
+			height: 206px;
+			width: 290px;
 			margin-top: 15px;
 			border-radius: 10px;
 		}
-		.post > img:hover {
+		.post:hover img {
 			filter: brightness(40%);
 		}
+		.post:hover .post_info{
+			display: block;
+		}
+		
+		.post_info{
+			display: none;
+			width: 240px;
+			position: absolute;
+			top: 50%;
+    		left: 38%;
+    		transform: translate( -50%, -50% );
+    		color: white;
+    		text-align: left;
+    		font-weight: bold;
+		}
+		.post_info > ul > li{
+			margin-top: 5px;
+		}
+		
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- filterPost() -->
 	<script>
 		function filterPost(){
 		    var url="http://localhost:8080/PaM/maincontrol";
@@ -189,8 +211,8 @@
 		    	}
 		    }
 
-		    console.log(type_list);
-		    console.log(brand_list);
+		    //console.log(type_list);
+		    //console.log(brand_list);
 		    
 		    $.ajax({
 		        type:"POST",
@@ -202,15 +224,46 @@
 		            search : $(search).val()
 		        },
 		        success : function(data){
-		        	console.log(data);
+		        	//console.log(data);
+		        	//request.setAttribute('posts', data);  // 처음 main 컨트롤러를 호출하면, request에 모든 객체에 대한 정보가 저장되지 않나?
 		        	$('#post_container>ul').empty();
 		            for(var i=0; i < data.length; i++){
-		            	var $li=$('<li><div class="post" onClick="alert('+'post로 이동'+')"><img src="'+data[i].img_list[0]+'"></div></li>');
+		            	var $post_li=$('<li></li>');
+		            	var $post_div=$('<div class="post" onClick="alert(\''+data[i].post_id+'post로 이동\')"></div>');
+		            	var $post_img=$('<img src="'+data[i].img_list[0]+'" name="'+data[i].post_id+'" >');
+		            	var $post_info_div=$('<div class="post_info"></div>');
+		            	var $post_info_ul=$('<ul></ul>');
+		            	var $car_name_li=$('<li>이름: '+data[i].car_name+'</li>');
+		            	var $car_brand_li=$('<li>브랜드: '+data[i].car_brand+'</li>');
+		            	var $car_type_li=$('<li>차종: '+data[i].car_type+'</li>');
+		            	var $car_price_li=$('<li>가격: '+data[i].car_price+' 원</li>');
+		            	var $car_mile_li=$('<li>주행거리: '+data[i].car_mile+' Km</li>');
+		            	if(data[i].car_etc == 'undefined'){
+		            		var $car_etc_li=$('<li>특이사항 없음</li>');
+		            	}
+		            	else{
+		            		var $car_etc_li=$('<li>'+data[i].car_etc+'</li>');
+		            	}
+		            	
+		            	$post_info_ul.append($car_name_li);
+		            	$post_info_ul.append($car_brand_li);
+		            	$post_info_ul.append($car_type_li);
+		            	$post_info_ul.append($car_price_li);
+		            	$post_info_ul.append($car_mile_li);
+		            	$post_info_ul.append($car_etc_li);
+		            	
+		            	$post_info_div.append($post_info_ul);
+		            	
+		            	$post_div.append($post_img);
+		            	$post_div.append($post_info_div);
+		            	
+		            	$post_li.append($post_div);
+		            	
 		            	if((i % 4 == 0) && i != 0){
 		            		var $br=$('<br>');
 		            		$br.appendTo($('#post_container>ul'));
 		            	}
-			            $li.appendTo($('#post_container>ul'));
+			            $post_li.appendTo($('#post_container>ul'));
 		            }
 		        },
 		        error : function(request,status,error){
@@ -241,46 +294,46 @@
 						<tr>
 							<td>차종</td>
 							<td>
-								<input type="checkbox" name="car_type" value="슈퍼카">슈퍼카
-								<input type="checkbox" name="car_type" value="스포츠카">스포츠카
-								<input type="checkbox" name="car_type" value="쿠페">쿠페
-								<input type="checkbox" name="car_type" value="머슬카">머슬카
-								<input type="checkbox" name="car_type" value="세단">세단
-								<input type="checkbox" name="car_type" value="SUV">SUV
-								<input type="checkbox" name="car_type" value="픽업 트럭">픽업 트럭
-								<input type="checkbox" name="car_type" value="트럭">트럭
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="슈퍼카">슈퍼카
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="스포츠카">스포츠카
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="쿠페">쿠페
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="머슬카">머슬카
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="세단">세단
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="SUV">SUV
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="픽업 트럭">픽업 트럭
+								<input type="checkbox" name="car_type" onClick="filterPost()" value="트럭">트럭
 							</td>
 						</tr>
 						<tr>
 							<td>브랜드</td>
 							<td>
-								<input type="checkbox" name="car_brand" value="Hyundai">현대
-								<input type="checkbox" name="car_brand" value="KIA">기아
-								<input type="checkbox" name="car_brand" value="Toyota">도요타
-								<input type="checkbox" name="car_brand" value="Honda">혼다
-								<input type="checkbox" name="car_brand" value="Nissan">닛산<br>
-								<input type="checkbox" name="car_brand" value="Renault">르노
-								<input type="checkbox" name="car_brand" value="Bugatti">부가티
-								<input type="checkbox" name="car_brand" value="Volvo">볼보
-								<input type="checkbox" name="car_brand" value="Koenigsegg">코닉세그
-								<input type="checkbox" name="car_brand" value="Benz">메르세데스-벤츠<br>
-								<input type="checkbox" name="car_brand" value="Porsche">포르쉐
-								<input type="checkbox" name="car_brand" value="Volkswagen">폭스바겐
-								<input type="checkbox" name="car_brand" value="BMW">BMW
-								<input type="checkbox" name="car_brand" value="Audi">아우디
-								<input type="checkbox" name="car_brand" value="Rolls">롤스로이스<br>
-								<input type="checkbox" name="car_brand" value="Bentley">벤틀리
-								<input type="checkbox" name="car_brand" value="McLaren">맥라렌
-								<input type="checkbox" name="car_brand" value="Jagur">재규어
-								<input type="checkbox" name="car_brand" value="Chevrolet">쉐보레
-								<input type="checkbox" name="car_brand" value="Jeep">지프<br>
-								<input type="checkbox" name="car_brand" value="Tesla">테슬라
-								<input type="checkbox" name="car_brand" value="Ford">포드
-								<input type="checkbox" name="car_brand" value="Dodge">닷지
-								<input type="checkbox" name="car_brand" value="Ferrari">페라리
-								<input type="checkbox" name="car_brand" value="Lamborghini">람보르기니<br>
-								<input type="checkbox" name="car_brand" value="Maserati">마세라티
-								<input type="checkbox" name="car_brand" value="Pagani">파가니
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Hyundai">현대
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="KIA">기아
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Toyota">도요타
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Honda">혼다
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Nissan">닛산<br>
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Renault">르노
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Bugatti">부가티
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Volvo">볼보
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Koenigsegg">코닉세그
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Benz">메르세데스-벤츠<br>
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Porsche">포르쉐
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Volkswagen">폭스바겐
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="BMW">BMW
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Audi">아우디
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Rolls">롤스로이스<br>
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Bentley">벤틀리
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="McLaren">맥라렌
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Jagur">재규어
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Chevrolet">쉐보레
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Jeep">지프<br>
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Tesla">테슬라
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Ford">포드
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Dodge">닷지
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Ferrari">페라리
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Lamborghini">람보르기니<br>
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Maserati">마세라티
+								<input type="checkbox" name="car_brand" onClick="filterPost()" value="Pagani">파가니
 							</td>
 						</tr>
 					</table>
@@ -295,12 +348,7 @@
 	<main>
 		<hr>
 		<div id="post_container">		<!-- 포스트 이동 추가, 마우스 올릴 시 정보표시 기능 추가 필요 -->
-			<ul>
-				<c:forEach var="p" items="${posts}" varStatus="status">
-					<li><div class="post" onClick="alert('post로 이동')"><img src="${p.getImg_list().get(0)}"></div></li>
-					<c:if test="${(status.count % 4) == 0}"><br></c:if>
-				</c:forEach> 
-			</ul>
+			<ul></ul><script>filterPost();</script>
 		</div>
 	</main>
 	

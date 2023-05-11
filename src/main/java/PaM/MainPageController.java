@@ -54,17 +54,17 @@ public class MainPageController extends HttpServlet {
 		List<String> types = new ArrayList<>();
 		if(request.getParameterValues("car_type[]") != null) {
 			types.addAll(Arrays.asList(request.getParameterValues("car_type[]")));
-			System.out.println(types.get(0));
-		}else {System.out.println("types is null");}
+			//System.out.println(types.get(0));
+		}
 
 		List<String> brands = new ArrayList<>();
 		if(request.getParameterValues("car_brand[]") != null) {
 			brands.addAll(Arrays.asList(request.getParameterValues("car_brand[]")));
-			System.out.println(brands.get(0));
+			//System.out.println(brands.get(0));
 		}
 		
 		String search = request.getParameter("search");
-		System.out.println(search);
+		//System.out.println(search);
 		
 		List<Post> post_list = pdao.getPostList(brands, types, search);
 		/*
