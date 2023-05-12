@@ -33,12 +33,6 @@ public class MainPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PostDAO pdao = new PostDAO();
-		
-		List<Post> post_list = pdao.getPostList(new ArrayList<String>(), new ArrayList<String>(), "");
-		if(!post_list.isEmpty()) {
-			request.setAttribute("posts", post_list);
-		}
 		
 		getServletContext().getRequestDispatcher(START_PAGE).forward(request, response);
 	}
