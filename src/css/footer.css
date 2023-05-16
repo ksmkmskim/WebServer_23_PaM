@@ -11,6 +11,6 @@
 }
 #footer_info > ul > li{
 	display: inline;
-	size: 5pt;
+	font-size: 10pt;
 	color: white;
 }

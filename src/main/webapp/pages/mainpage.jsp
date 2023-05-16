@@ -6,53 +6,76 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pat & Mat</title>
+	<link rel="stylesheet" href="/PaM/src/css/footer.css" /> <!-- font css -->
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 	<style>
 		/*====================================   header   =====================================*/
-		#header{
-			text-align: center;
+
+		#header_box{
+			position: relative;
+			left: 300px;
+		}
+
+		#title_box > div > h2{
+			font-family: 'Pretendard Variable';
+			font-size: 35pt;
+			font-weight: 900;
+			color: #485A61;
+			letter-spacing: 8px;
 		}
 		
-		#header_logo_l > a > img{
-			margin-top: 20px;
-			border: 5px;
-			border-color: black;
-			filter: drop-shadow(0px 5px 4px black);
+		#intro_text{
+			color: #485A61;
+			font-family: 'Pretendard Variable';
+			font-size: 10pt;
+			margin-bottom: 30px;
+		}
+		#intro_text.show_more .hidden{
+			display: inline;
+		}
+		#intro_text.show_more .exposed{
+			display: none;
 		}
 		
-		#header_search_bar{
-			display: flex;
-			justify-content: center;
-			margin-top: 40px;
+		.read_more_btn{
+			padding: 10px 30px;
+			background-color: #F2F5F5;
+			border: solid 2px #364448;
+			border-radius: 30px;
+			font-family: 'Lato';
+			color: #364448;
+			font-size: 8pt;
+			letter-spacing: 2px;
+		}
+		.read_more_btn:hover{
+			color: #FFFFFF;
+			background-color: #364448;
 		}
 		
-		#header_filter{
-			margin-top: 50px;
+		.hidden{
+			display: none;
+		}
+		
+		#search_bar{
+			position: absolute;
+			left: 650px;
+			top: 30px;
+		}
+		#search_bar > div > h1{
+			font-family: 'Pretendard Variable';
+			font-size: 30pt;
 			font-weight: bold;
+			color: #485A61;
 		}
-		#header_filter > span > table{
-			margin-top: 0px;
-			margin-left: auto;
-			margin-right: auto;
-			text-align: left;
-			display: inline-block;
-		}
-		#header_filter > span > table tr:nth-child(2) td{
-			border-top: black solid 1px;
-		}
-		#header_filter > span > table tr{
-			margin-top: 10px;
-		}
-		
-		#header_filter > span > table tr td:nth-child(1){
-			border-right: black solid 1px;
-			padding-right: 20px;
-		}
-		#header_filter > span > table tr td:nth-child(2){
-			padding-left: 10px;
-		}
-		#header_filter > span > table tr td > input{
-			margin-top: 10px;
+		#search_bar > div > input{
+			font-family: 'Pretendard Variable';
+			font-size: 13pt;
+			font-weight: 550;
+			background-color: #F2F5F5;
+			border: 0;
+			border-bottom: solid 3px #485A61;
+			width: 500px;
+			outline: none;
 		}
 		
 		#post_btn{
@@ -195,85 +218,36 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>cpage = 1;</script>  <!-- current page = 1 -->
 	<script src="/PaM/src/Javascript/postSearch.js"></script>  <!-- postSearch() -->
-	
+	<script src="/PaM/src/Javascript/readMoreButton.js"></script>
 	
 </head>
 <body>
-	
 	<%@ include file="nav.jsp" %>	<!-- nav -->
 	
 	<header>
-		<div id="header">
-			<div id="header_logo_l"><a href="/PaM/maincontrol"><img src="/PaM/src/img/logo_l.png" width="330"></a></div>	<!-- 클릭시 메인페이지 이동 추가 필요-->
-			<div id="header_search_bar">
-				<fieldset class="field-container">
-					<input type="text" name="search" placeholder="차량 검색" class="field">
-					<div class="icon-container" onClick="postSearch()">		<!-- onClick 값 수정 필요 -->
-						<div class="icon-search"></div>
-					</div>
-				</fieldset>
-			</div>
-			<div id="header_filter">
-				<span>
-					<table>		<!-- 다른 디자인 방법은 없을까;; -->
-						<tr>
-							<td>차종</td>
-							<td>
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="슈퍼카">슈퍼카
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="스포츠카">스포츠카
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="쿠페">쿠페
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="머슬카">머슬카
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="세단">세단
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="SUV">SUV
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="픽업 트럭">픽업 트럭
-								<input type="checkbox" name="car_type" onClick="postSearch()" value="트럭">트럭
-							</td>
-						</tr>
-						<tr>
-							<td>브랜드</td>
-							<td>
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Hyundai">현대
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="KIA">기아
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Toyota">도요타
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Honda">혼다
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Nissan">닛산<br>
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Renault">르노
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Bugatti">부가티
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Volvo">볼보
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Koenigsegg">코닉세그
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Benz">메르세데스-벤츠<br>
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Porsche">포르쉐
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Volkswagen">폭스바겐
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="BMW">BMW
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Audi">아우디
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Rolls">롤스로이스<br>
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Bentley">벤틀리
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="McLaren">맥라렌
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Jagur">재규어
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Chevrolet">쉐보레
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Jeep">지프<br>
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Tesla">테슬라
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Ford">포드
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Dodge">닷지
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Ferrari">페라리
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Lamborghini">람보르기니<br>
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Maserati">마세라티
-								<input type="checkbox" name="car_brand" onClick="postSearch()" value="Pagani">파가니
-							</td>
-						</tr>
-					</table>
-				</span>
-				<span id="post_btn">	<!-- 동적으로 표시 유무 구현 -->
-					<img src="/PaM/src/img/post_button.png" onClick="alert('post button')">	<!-- onClick 수정 필요 -->
-				</span>
-			</div>
+		<div id="header_box">
+			<span id="title_box">
+				<div><h2>PAT & MAT</h2></div>
+				<div>
+					<p id="intro_text">패트와 매트의 신뢰할 수 있는 중고차<br><br>
+						<span class="exposed">...</span>
+						<span class="hidden">20180645 손현승<br>20200575 김이레</span>
+					</p>
+				</div>
+				<button class="read_more_btn" onClick="readMore('#intro_text')">READ MORE</button>
+			</span>
+			<span id="search_bar">
+				<div><h1>어떤 차를 찾으세요?</h1></div>
+				<div><input type="text" name="search" onKeyUp="" placeholder="모델명을 입력해주세요. 예) K9"></div>
+			</span>
 		</div>
+		<div id="filter_box"></div>
 	</header>
 	
 	<main>
 		<hr>
 		<div id="post_container">		<!-- 포스트 이동 추가, 마우스 올릴 시 정보표시 기능 추가 필요 -->
-			<ul></ul><script>postSearch();</script>
+			<ul></ul><!-- <script>postSearch();</script>  -->
 		</div>
 	</main>
 	
