@@ -36,10 +36,10 @@ nav{
 	color: #485A61;
 	font-family: 'Lato';
 	font-weight: bold;
-	font-size: 8pt;
+	font-size: 10pt;
 }
 #menu_bar > ul > li > img{
-	width: 11px;
+	width: 13px;
 }
 #menu_bar > ul > li > div > a{
 	text-decoration: none;

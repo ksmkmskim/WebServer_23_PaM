@@ -2,8 +2,9 @@
 	Read More Button Function
 */
 function readMore(target_id){
-	console.log(target_id);
-	target = document.querySelector(target_id);
-	console.log(target);
-	target.classList.toggle('show_more');
+	targets = document.querySelectorAll(target_id);
+	for(var i=0; i < targets.length; i++){
+		targets[i].classList.toggle('show_more');
+	}
+	
 }
