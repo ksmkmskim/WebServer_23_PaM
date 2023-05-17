@@ -245,6 +245,7 @@
 			background-color: white;
 			font-size: 3pt;
 			margin-left: 17px;
+			letter-spacing: 1px;
 		}
 		.post_info .read_more_btn:hover{
 			color: #FFFFFF;
