@@ -278,7 +278,8 @@
 	</main>
 	
 	<aside>
-		<div id="banner"></div>
+		<div id="banner">
+		</div>
 	</aside>
 	
 	<%@ include file="footer.jsp" %>	<!-- footer -->

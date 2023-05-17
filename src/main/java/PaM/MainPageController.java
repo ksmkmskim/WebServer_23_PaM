@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Servlet implementation class MainPageController
  */
-@WebServlet("/maincontrol")
+@WebServlet("/main")
 public class MainPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final String START_PAGE = "/pages/mainpage.jsp";   

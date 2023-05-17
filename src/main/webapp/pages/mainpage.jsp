@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pat & Mat</title>
-	<link rel="stylesheet" href="/PaM/src/css/footer.css" /> <!-- font css -->
+	<!-- <link rel="stylesheet" href="/PaM/src/css/font.css" />  font css -->
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 	<style>
 		/*====================================   header   =====================================*/
@@ -267,11 +267,26 @@
 			font-size: 9pt;
 		}
 		
+		/*====================================   aside   =====================================*/
+		
+		#banner{
+			position: fixed;
+			left: 90%;
+			top: 70%;
+			cursor: pointer;
+			transition-duration: 0.1s;
+		}
+		#banner > div > img{
+			width: 30px;
+			box-shadow: 0px 2px 9px -2px gray;
+		}
+		
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>cpage = 1;</script>  <!-- current page = 1 -->
 	<script src="/PaM/src/Javascript/postSearch.js"></script>  <!-- postSearch() -->
 	<script src="/PaM/src/Javascript/readMoreButton.js"></script>
+	<script src="/PaM/src/Javascript/scrollPage.js"></script>
 	
 </head>
 <body>
@@ -361,7 +376,10 @@
 	</main>
 	
 	<aside>
-		<div id="banner"></div>
+		<div id="banner">
+			<div onClick="scrollPage('nav')"><img src="/PaM/src/img/up_button.png"></div>
+			<div onClick="scrollPage('footer')"><img src="/PaM/src/img/down_button.png"></div>
+		</div>
 	</aside>
 	
 	<%@ include file="footer.jsp" %>	<!-- footer -->

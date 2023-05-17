@@ -6,5 +6,4 @@ function readMore(target_id){
 	for(var i=0; i < targets.length; i++){
 		targets[i].classList.toggle('show_more');
 	}
-	
 }

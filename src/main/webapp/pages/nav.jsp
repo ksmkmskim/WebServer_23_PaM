@@ -33,7 +33,7 @@
 		<div id="menu_bar">
 			<ul>
 				<li><img src="/PaM/src/img/menu_img.png"></li>
-				<li><div class="menu"><a href="/PaM/maincontrol">HOME</a></div></li>
+				<li><div class="menu"><a href="/PaM/main">HOME</a></div></li>
 				<li><div class="menu">SERVICE</div></li>
 				<li><div class="menu">ABOUT US</div></li>
 				<li><div class="menu">CONTACT</div></li>

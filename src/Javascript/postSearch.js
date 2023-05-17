@@ -2,7 +2,7 @@
 	postSearch() function
 */
 function postSearch(scrollChk = false){
-    var url="http://localhost:8080/PaM/maincontrol";
+    var url="http://localhost:8080/PaM/main";
     let types = document.getElementsByName("car_type");
     let brands = document.getElementsByName("car_brand");
     let search = document.getElementsByName("search");
@@ -44,7 +44,7 @@ function postSearch(scrollChk = false){
             	var $post_info_div = $('<div class="post_info"></div>');
             	var $post_info = $('<span class="car_info">'+data[i].car_brand +' '+ data[i].car_name+'</span><span class="car_price">'+data[i].car_price+' 원</span>');
             	var $post_info_hr = $('<hr>');
-            	var $post_rm_btn = $('<button class="read_more_btn" onClick="alert(\''+data[i].post_id+'post로 이동\')">MORE INFO</button>');
+            	var $post_rm_btn = $('<button class="read_more_btn" onClick="location.href=\'/PaM/post?id='+data[i].post_id+'\'">MORE INFO</button>');
             	
             	$post_info_div.append($post_info);
             	$post_info_div.append($post_info_hr);
@@ -67,7 +67,7 @@ function postSearch(scrollChk = false){
         },
         error : function(request,status,error){
             alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
-            alert(e);
+            alert(error);
         }
     })
 }
