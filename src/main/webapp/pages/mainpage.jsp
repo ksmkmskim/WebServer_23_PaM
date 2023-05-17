@@ -10,11 +10,14 @@
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 	<style>
 		/*====================================   header   =====================================*/
+		header{
+			text-align: center;
+		}
 		
 		#title_box{
 			display: inline-block;
-			position: relative;
-			left: 310px;
+			text-align: left;
+			margin-right: 400px;
 		}
 		#title_box > div > h2{
 			font-family: 'Pretendard Variable';
@@ -46,6 +49,7 @@
 			color: #364448;
 			font-size: 8pt;
 			letter-spacing: 2px;
+			cursor: pointer;
 		}
 		.read_more_btn:hover{
 			color: #FFFFFF;
@@ -58,9 +62,9 @@
 		
 		#search_bar{
 			display: inline-block;
-			position: relative;
-			left: 700px;
-			top: -50px;
+			text-align: left;
+			vertical-align: top;
+			margin-top: 70px;
 		}
 		#search_bar > div > h1{
 			font-family: 'Pretendard Variable';
@@ -89,8 +93,7 @@
 			width: 780px;
 			padding: 7px 30px;
 			margin-top: 100px;
-			position: relative;
-			left: 25%;
+			text-align: left;
 			font-family: 'Pretendard Variable';
 			background-color: white;
 			border-radius: 2px;
@@ -102,20 +105,18 @@
 		}
 		
 		#filter_menu{
+			width: 800px;
 			font-size: 15pt;
 			font-weight: bold;
 			color: black;
 		}
 		#filter_menu > span:nth-child(2){
 			display: inline-block;
-			position: relative;
-			left: 41%;
+			margin-left: 320px;
 		}
 		#filter_menu > span:nth-child(3){
 			display: inline-block;
-			position: relative;
-			left: 78%;
-			top: -2px;
+			margin-left: 290px;
 			font-size: 10pt;
 			font-weight: 400;
 			color: #94A8AD;
@@ -172,18 +173,29 @@
 		}
 		
 		#post_btn{
+			color: #364448;
+			border: none;
+			background-color: white;
 			display: inline-block;
-			vertical-align: top;
-			position: relative;
-			left: 100px;
-			filter: drop-shadow(0px 0px 2px #1f94b1);
-			
 			transition-duration: 0.1s;
+			font-size: 16pt;
+			font-weight: 900;
+			width: 30px;
+			height: 30px;
+			padding: 0;
+			text-align: center;
+			position: relative;
+			left: 237px;
+			box-shadow: 0 0 9px -1px gray;
+			cursor: pointer;
+		}
+		#post_btn:hover{
+			color: white;
+			background-color: #364448;
 		}
 		#post_btn:active{
-			left: 102px;
+			left: 239px;
 			top: 2px;
-			filter: drop-shadow(0px 0px 0px #1f94b1);
 		}
 
 		/*====================================   main   =====================================*/
@@ -199,44 +211,59 @@
 		}
 		#post_container > ul > li{
 			display: inline-block;
-			width: 305.6px;
 		}
 		
 		.post{
 			display: inline-block;
+			width: 330px;
 			margin: 5px;
 			position: relative;
 			padding-top: 5px;
-			border-radius: 10px;
-			background-color: #f1f3f4;
+			background-color: white;
+			box-shadow: 0px 2px 26px -7px gray;
 		}
-		.post > img{
-			height: 206px;
-			width: 290px;
+		
+		.post_img{
+			margin-top: 15px;
+		}
+		.post_img > img{
+			height: 208px;
+			width: 296px;
 			margin: 0px;
-			border-radius: 10px;
 			box-shadow: 0px 0px 5px black;
-		}
-		.post:hover img {
-			filter: brightness(40%);
-		}
-		.post:hover .post_info{
-			display: block;
 		}
 		
 		.post_info{
-			display: none;
-			width: 240px;
-			position: absolute;
-			top: 50%;
-    		left: 38%;
-    		transform: translate( -50%, -50% );
-    		color: white;
-    		text-align: left;
+			text-align: left;
     		font-weight: bold;
+    		color: #485A61;
+    		font-family: 'Pretendard Variable';
+    		margin-bottom: 10px;
 		}
-		.post_info > ul > li{
+		.post_info .read_more_btn{
+			padding: 7px 10px;
+			background-color: white;
+			font-size: 3pt;
+			margin-left: 17px;
+		}
+		.post_info .read_more_btn:hover{
+			color: #FFFFFF;
+			background-color: #364448;
+		}
+		.post_info > hr{
+			width: 90%;
+		}
+		
+		.car_info{
+			margin-left: 20px;
+			font-size: 11pt;
+		}
+		
+		.car_price{
+			float: right;
+			margin-right: 20px;
 			margin-top: 5px;
+			font-size: 9pt;
 		}
 		
 	</style>
@@ -263,7 +290,7 @@
 			</span>
 			<span id="search_bar">
 				<div><h1>어떤 차를 찾으세요?</h1></div>
-				<div><input type="text" name="search" onKeyUp="" placeholder="모델명을 입력해주세요. 예) K9"></div>
+				<div><input type="text" name="search" onKeyUp="postSearch()" placeholder="모델명을 입력해주세요. 예) K9"></div>
 			</span>
 		</div>
 		<div id="filter_box">
@@ -319,15 +346,16 @@
 						<li class="hidden"><input type="checkbox" id="cb27" name="car_brand" onClick="postSearch()" value="파가니"><label for="cb27"><span>파가니</span></label></li>
 					</ul>
 				</span>
-			</div>			
+			</div>
 		</div>
+		<button id="post_btn"><div>+</div></button>
 		<div id="back_color"></div>
 	</header>
 	
 	<main>
 		
 		<div id="post_container">		<!-- 포스트 이동 추가, 마우스 올릴 시 정보표시 기능 추가 필요 -->
-			<ul></ul><!-- <script>postSearch();</script>  -->
+			<ul></ul><script>postSearch();</script>
 		</div>
 	</main>
 	

@@ -38,17 +38,31 @@ function postSearch(scrollChk = false){
 			}
 
             for(var i=((cpage-1) * load_post_num); i < data.length && i < cpage * load_post_num; i++){
-            	var $post_li = $('<li></li>');
-            	var $post_div = $('<div class="post"></div>');
-            	var $post_img = $('<div class="post_img"><img src="'+data[i].img_list[0]+'"></div>');
-            	var $post_info_div = $('<div class="post_info"></div>');
-            	var $post_info = $('<span class="car_info">'+data[i].car_brand +' '+ data[i].car_name+'</span><span class="car_price">'+data[i].car_price+' 원</span>');
-            	var $post_info_hr = $('<hr>');
-            	var $post_rm_btn = $('<button class="read_more_btn" onClick="alert(\''+data[i].post_id+'post로 이동\')">MORE INFO</button>');
+            	var $post_li=$('<li></li>');
+            	var $post_div=$('<div class="post" onClick="alert(\''+data[i].post_id+'post로 이동\')"></div>');
+            	var $post_img=$('<img src="'+data[i].img_list[0]+'" name="'+data[i].post_id+'" >');
+            	var $post_info_div=$('<div class="post_info"></div>');
+            	var $post_info_ul=$('<ul></ul>');
+            	var $car_name_li=$('<li>이름: '+data[i].car_name+'</li>');
+            	var $car_brand_li=$('<li>브랜드: '+data[i].car_brand+'</li>');
+            	var $car_type_li=$('<li>차종: '+data[i].car_type+'</li>');
+            	var $car_price_li=$('<li>가격: '+data[i].car_price+' 원</li>');
+            	var $car_mile_li=$('<li>주행거리: '+data[i].car_mile+' Km</li>');
+            	if(data[i].car_etc == 'undefined'){
+            		var $car_etc_li=$('<li>특이사항 없음</li>');
+            	}
+            	else{
+            		var $car_etc_li=$('<li>'+data[i].car_etc+'</li>');
+            	}
             	
-            	$post_info_div.append($post_info);
-            	$post_info_div.append($post_info_hr);
-            	$post_info_div.append($post_rm_btn);
+            	$post_info_ul.append($car_name_li);
+            	$post_info_ul.append($car_brand_li);
+            	$post_info_ul.append($car_type_li);
+            	$post_info_ul.append($car_price_li);
+            	$post_info_ul.append($car_mile_li);
+            	$post_info_ul.append($car_etc_li);
+            	
+            	$post_info_div.append($post_info_ul);
             	
             	$post_div.append($post_img);
             	$post_div.append($post_info_div);
