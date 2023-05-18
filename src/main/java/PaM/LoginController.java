@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String uid = request.getParameter("id");
 		String upwd = request.getParameter("pwd");
-		System.out.println("ID & PWD: " + uid + " " + upwd);
+
 		UserDAO udao = new UserDAO();
 		
 		User u = udao.getUser(uid);
@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 		if(u != null) {
 			if(u.getUser_pw().equals(upwd)) {
 				HttpSession session = request.getSession();
-				session.setAttribute("sgin_in_user", u);
+				session.setAttribute("sign_in_user", u);
 				getServletContext().getRequestDispatcher(MAIN_PAGE).forward(request, response);
 			}
 			else {

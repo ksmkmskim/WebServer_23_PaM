@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String MAIN_PAGE = "/pages/mainpage.jsp";   
+	private final String MAIN_PAGE = "/pages/mainpage.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,7 +29,7 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		session.setAttribute("sgin_in_user", null);
+		session.setAttribute("sign_in_user", null);
 		getServletContext().getRequestDispatcher(MAIN_PAGE).forward(request, response);
 	}
 

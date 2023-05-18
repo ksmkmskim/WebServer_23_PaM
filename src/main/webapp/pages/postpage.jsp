@@ -197,6 +197,7 @@
 </style>
 <script>img_num = 0;</script>
 <script src="/PaM/src/Javascript/changeImg.js"></script>  <!-- changeImg() -->
+<script src="/PaM/src/Javascript/postDelete.js"></script>  <!-- postDelete() -->
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
 	
@@ -211,8 +212,8 @@
 		</div>
 		<hr>
 		<div id="btn_box">
-			<span class="rd_btn" onClick="">수정</span>
-			<span class="rd_btn" onClick="">삭제</span>
+			<span id="revise_btn" class="rd_btn" onClick="">수정</span>
+			<span id="delete_btn" class="rd_btn" onClick="location.href='/PaM/delete?id=${post.getPost_id()}'">삭제</span>
 		</div>
 	</header>
 
