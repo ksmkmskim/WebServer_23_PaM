@@ -35,7 +35,6 @@ public class PostPageController extends HttpServlet {
 		int pid = Integer.parseInt(request.getParameter("id"));
 		
 		Post p = pdao.getPost(pid);
-		
 		request.setAttribute("post", p);
 		getServletContext().getRequestDispatcher(POST_PAGE).forward(request, response);
 	}

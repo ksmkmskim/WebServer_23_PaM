@@ -82,10 +82,7 @@
 		text-align: center;
 	}
 	
-	#main_img > span > img{
-		width: 30px;
-	}
-	#main_img > span:nth-child(2) > img{
+	#main_img > img{
 		width: 800px;
 		height: 562px;
 		box-shadow: 0px 0px 10px black;
@@ -100,8 +97,15 @@
 	#l_btn{
 		left: -20px;
 	}
+	#l_btn > img{
+		width: 30px;
+	}
+	
 	#r_btn{
 		left: 20px;
+	}
+	#r_btn > img{
+		width: 30px;
 	}
 	
 	#car_imgs{
@@ -128,8 +132,11 @@
 		width: 200px;
 		height: 140.54px;
 	}
-	#img_list > ul > li > div > img.unchosen{
+	#img_list > ul > li > div > img{
 		filter: brightness(60%);
+	}
+	#img_list > ul > li > div > img.chosen{
+		filter: brightness(100%);
 	}
 	#img_list > ul > li > div > img:hover{
 		filter: brightness(100%);
@@ -179,6 +186,7 @@
 	}
 	
 </style>
+<script src="/PaM/src/Javascript/changeImg.js"></script>  <!-- changeImg() -->
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
 	
@@ -200,15 +208,15 @@
 	
 	<main>
 		<div id="car_imgs">
-			<div id="main_img">
-				<span id="l_btn"><img src="/PaM/src/img/l_arrow.png"></span>
-				<span><img src="${post.getImg_list()[0]}"></span>
-				<span id="r_btn"><img src="/PaM/src/img/r_arrow.png"></span>
+			<div id="main_img_box">
+				<span id="l_btn" onClick=""><img src="/PaM/src/img/l_arrow.png"></span>
+				<span id="main_img"><img src="${post.getImg_list()[0]}"></span>
+				<span id="r_btn" onClick=""><img src="/PaM/src/img/r_arrow.png"></span>
 			</div>
 			<div id="img_list">
 				<ul>
 					<c:forEach var="img" items="${post.getImg_list()}" varStatus="s">
-						<li><div onClick="alert('img num: ${s.index}')"><img src="${img}" class="unchosen"></div></li>
+						<li><div id="img_${s.index}" onClick="changeImg('${post.getImg_list()}', ${s.index})"><img src="${img}"></div></li>
 					</c:forEach>
 				</ul>
 			</div>
