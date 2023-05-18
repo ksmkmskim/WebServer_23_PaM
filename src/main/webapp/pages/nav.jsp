@@ -13,7 +13,7 @@
 			<ul>		<!-- 동적인 부분으로 변경해야 함 -->
 				<li>
 					<c:if test="${sessionScope.sgin_in_user == null}">
-						<a href="https://www.naver.com">로그인</a>
+						<a href="/PaM/login">로그인</a>
 					</c:if>
 					<c:if test="${sessionScope.sgin_in_user != null}">
 						<a href="https://www.naver.com">${sessionScope.sgin_in_user.user_name}</a>
@@ -25,7 +25,7 @@
 						<a href="">회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.sgin_in_user != null}">
-						<a href="">로그아웃</a>
+						<a href="/PaM/logout">로그아웃</a>
 					</c:if>
 				</li>
 			</ul>

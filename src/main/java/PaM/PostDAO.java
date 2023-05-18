@@ -123,7 +123,7 @@ public class PostDAO {
 		open();
 		String sql_post = "select * from post_table where post_id=?";
 		String sql_img = "select * from img_table where img_post_id=?";
-		Post p = new Post();
+		Post p = null;
 		List<String> imgs = new ArrayList<>();
 		UserDAO udao = new UserDAO();
 		
@@ -133,6 +133,7 @@ public class PostDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				p = new Post();
 				p.setPost_id(rs.getInt("post_id"));
 				p.setCar_name(rs.getString("car_name"));
 				p.setCar_brand(rs.getString("car_brand"));
@@ -217,7 +218,7 @@ public class PostDAO {
 		} finally {
 			close();
 		}
-		
+
 		return posts;
 	}
 	

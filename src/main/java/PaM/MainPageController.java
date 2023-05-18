@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebServlet("/main")
 public class MainPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private final String START_PAGE = "/pages/mainpage.jsp";   
+    private final String MAIN_PAGE = "/pages/mainpage.jsp";   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,8 +33,7 @@ public class MainPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		getServletContext().getRequestDispatcher(START_PAGE).forward(request, response);
+		getServletContext().getRequestDispatcher(MAIN_PAGE).forward(request, response);
 	}
 
 	/**

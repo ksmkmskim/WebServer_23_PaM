@@ -58,7 +58,7 @@ public class UserDAO {
 	public User getUser(String uid) {
 		open();
 		String sql = "select * from user_table where user_id=?";
-		User u = new User();
+		User u = null;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -66,9 +66,11 @@ public class UserDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				u = new User();
 				u.setUser_id(rs.getString("user_id"));
 				u.setUser_pw(rs.getString("user_pw"));
 				u.setUser_name(rs.getString("user_name"));
+				System.out.println(rs);
 				u.setUser_tel(rs.getString("user_tel"));
 				u.setUser_addr(rs.getString("user_addr"));
 				u.setUser_permission(rs.getInt("user_permission"));
