@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pat & Mat</title>
-	<!-- <link rel="stylesheet" href="/PaM/src/css/font.css" />  font css -->
+	<link rel="stylesheet" href="/PaM/src/css/font.css" /> <!-- font css -->
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 	<style>
 		/*====================================   header   =====================================*/

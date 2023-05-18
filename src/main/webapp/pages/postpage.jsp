@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pat & Mat</title>
-	<!--<link rel="stylesheet" href="/PaM/src/css/font.css" />  font css -->
+	<link rel="stylesheet" href="/PaM/src/css/font.css" /> <!-- font css -->
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 </head>
 <style>
@@ -83,10 +83,27 @@
 	}
 	
 	#main_img > span > img{
+		width: 30px;
+	}
+	#main_img > span:nth-child(2) > img{
 		width: 800px;
 		height: 562px;
 		box-shadow: 0px 0px 10px black;
 	}
+	
+	#l_btn, #r_btn{
+		display: inline-block;
+		position: relative;
+		top: -261px;
+		cursor: pointer;
+	}
+	#l_btn{
+		left: -20px;
+	}
+	#r_btn{
+		left: 20px;
+	}
+	
 	#car_imgs{
 		display: inline-block;
 	}
@@ -104,9 +121,18 @@
 	#img_list > ul > li{
 		display: inline-block;
 	}
+	#img_list > ul > li > div{
+		cursor: pointer;
+	}
 	#img_list > ul > li > div > img{
 		width: 200px;
 		height: 140.54px;
+	}
+	#img_list > ul > li > div > img.unchosen{
+		filter: brightness(60%);
+	}
+	#img_list > ul > li > div > img:hover{
+		filter: brightness(100%);
 	}
 	
 	#car_info_box{
@@ -121,7 +147,7 @@
 	
 	#car_info{
 		background-color: #F2F5F5;
-		border-radius: 3px;
+		border-radius: 5px;
 		box-shadow: 0px 0px 13px -4px black;
 	}
 	#car_info > table{
@@ -132,15 +158,24 @@
 	}
 	#car_info > table > tbody > tr > td:nth-child(1){
 		text-align: left;
-		width: 120px;
+		width: 174px;
 	}
 	#car_info > table > tbody > tr > td:nth-child(2){
 		text-align: right;
 	}
 	
 	#trade_btn{
-		margin-top: 20px;
+		padding: 19px 0px;
+		margin-top: 78px;
+		border-radius: 5px;
+		box-shadow: 0px 0px 13px -4px black;
 		background-color: #F2F5F5;
+		font-size: 21pt;
+		cursor: pointer;
+	}
+	#trade_btn:hover{
+		color: white;
+		background-color: #8F8F8F;
 	}
 	
 </style>
@@ -166,14 +201,14 @@
 	<main>
 		<div id="car_imgs">
 			<div id="main_img">
-				<span id="l_btn"></span>
+				<span id="l_btn"><img src="/PaM/src/img/l_arrow.png"></span>
 				<span><img src="${post.getImg_list()[0]}"></span>
-				<span id="r_btn"></span>
+				<span id="r_btn"><img src="/PaM/src/img/r_arrow.png"></span>
 			</div>
 			<div id="img_list">
 				<ul>
 					<c:forEach var="img" items="${post.getImg_list()}" varStatus="s">
-						<li><div onClick="alert('img num: ${s.index}')"><img src="${img}"></div></li>
+						<li><div onClick="alert('img num: ${s.index}')"><img src="${img}" class="unchosen"></div></li>
 					</c:forEach>
 				</ul>
 			</div>

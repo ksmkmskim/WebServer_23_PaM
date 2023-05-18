@@ -4,6 +4,6 @@
 	font-weight: 45 920;
 	font-style: normal;
 	font-display: swap;
-	src: local('Pretendard Variable'), url('/PaM/src/font/PretendardVariable.woff2') format('woff2-variations');
+	src: local('Pretendard Variable'), url('/PaM/src/font/PretendardVariable.woff2') format('font/woff2');
 }
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
