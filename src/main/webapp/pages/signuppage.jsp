@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="/PaM/src/css/font.css" />  <!-- font css --> 
 	<link rel="stylesheet" href="/PaM/src/css/body.css" /> <!-- body css -->
 	<style>
+		body{
+			text-align: center;
+		}
 		#patAndMat{
 			margin-top: 5%;
 		}
@@ -22,11 +25,11 @@
 		#signupBox{
 			margin-top: 100px;
 			margin-bottom: 150px;
-			margin-left: 40%;
 			width: 600px;
-			padding: 0%;
+			padding: 0px;
 			padding-bottom: 50px;
 			border: 2px solid black;
+			display: inline-block;
 		}
 		.labelTr > td{
 			padding-top: 35px;
