@@ -57,7 +57,7 @@ public class PostDAO {
 			pstmt.setInt(1, p.getPost_id());
 			
 			for(String img : p.getImg_list()) {
-				pstmt.setString(2, img);
+				pstmt.setString(2, img.replace("\\","/"));
 				pstmt.executeUpdate();
 			}
 			
@@ -148,7 +148,7 @@ public class PostDAO {
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()){
-					imgs.add(rs.getString("car_img"));
+					imgs.add(rs.getString("car_img").replace("\\","/"));
 				}
 				p.setImg_list(imgs);
 				//System.out.println(p);

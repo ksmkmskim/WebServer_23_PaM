@@ -92,6 +92,8 @@
 		display: inline-block;
 		position: relative;
 		top: -261px;
+		width: 30px;
+		transition-duration: 0.1s;
 		cursor: pointer;
 	}
 	#l_btn{
@@ -100,12 +102,18 @@
 	#l_btn > img{
 		width: 30px;
 	}
+	#l_btn:active > img{
+		width: 28px;
+	}
 	
 	#r_btn{
 		left: 20px;
 	}
 	#r_btn > img{
 		width: 30px;
+	}
+	#r_btn:active > img{
+		width: 28px;
 	}
 	
 	#car_imgs{
@@ -131,6 +139,7 @@
 	#img_list > ul > li > div > img{
 		width: 200px;
 		height: 140.54px;
+		box-shadow: 0px 0px 10px black;
 	}
 	#img_list > ul > li > div > img{
 		filter: brightness(60%);
@@ -186,6 +195,7 @@
 	}
 	
 </style>
+<script>img_num = 0;</script>
 <script src="/PaM/src/Javascript/changeImg.js"></script>  <!-- changeImg() -->
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
@@ -205,22 +215,21 @@
 			<span class="rd_btn" onClick="">삭제</span>
 		</div>
 	</header>
-	
+
 	<main>
 		<div id="car_imgs">
 			<div id="main_img_box">
-				<span id="l_btn" onClick=""><img src="/PaM/src/img/l_arrow.png"></span>
-				<span id="main_img"><img src="${post.getImg_list()[0]}"></span>
-				<span id="r_btn" onClick=""><img src="/PaM/src/img/r_arrow.png"></span>
+				<span id="l_btn" onClick="changeImg('${post.getImg_list()}', img_num - 1)"><img src="/PaM/src/img/l_arrow.png"></span>
+				<span id="main_img"><img src=""></span>
+				<span id="r_btn" onClick="changeImg('${post.getImg_list()}', img_num + 1)"><img src="/PaM/src/img/r_arrow.png"></span>
 			</div>
 			<div id="img_list">
 				<ul>
-					<c:forEach var="img" items="${post.getImg_list()}" varStatus="s">
-						<li><div id="img_${s.index}" onClick="changeImg('${post.getImg_list()}', ${s.index})"><img src="${img}"></div></li>
-					</c:forEach>
+					<c:forEach var="img" items="${post.getImg_list()}" varStatus="s"><li><div id="img_${s.index}" onClick="changeImg('${post.getImg_list()}', ${s.index})"><img src="${img}"></div></li></c:forEach>
 				</ul>
 			</div>
 		</div>
+		<script>changeImg('${post.getImg_list()}', 0);</script>
 		<div id="car_info_box">
 			<div id="car_info">
 				<table>

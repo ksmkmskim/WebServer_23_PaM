@@ -10,7 +10,7 @@ function changeImg(imgs, num){
 		var chosen_img = document.querySelector('#img_' + num + '> img');
 		main_img.setAttribute('src', img_list[num]);
 		img_num = num;
-		console.log('img_num:' + img_num);
+		console.log(img_num);
 		
 		for(var i=0; i < len; i++){
 			var unchosen_img = document.querySelector('#img_' + i + '> img');
