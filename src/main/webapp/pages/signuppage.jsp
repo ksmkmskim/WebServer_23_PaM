@@ -25,11 +25,17 @@
 		#signupBox{
 			margin-top: 100px;
 			margin-bottom: 150px;
+			margin-left: auto;
+			margin-right: auto;
 			width: 600px;
 			padding: 0px;
 			padding-bottom: 50px;
-			border: 2px solid black;
-			display: inline-block;
+			border: 4px solid black;
+			border-radius: 30px;
+		}
+		#signupBox > div{
+			position: relative;
+			left: 50px;
 		}
 		.labelTr > td{
 			padding-top: 35px;
@@ -69,7 +75,7 @@
 			font-size: 12pt;
 			letter-spacing: 2px;
 		}
-		#submit_btn{
+		#signup_btn{
 			margin-top: 20px;
 			width: 350px;
 			border-radius: 30px;
@@ -81,50 +87,52 @@
 <body>
 	<div align="center" id="patAndMat"><a href="/PaM/main" >PAT & MAT</a></div>
 	<div id="signupBox" align="center">
-		<form name="signupForm">
-			<table>
-				<tr class="labelTr">
-					<td><label>아이디 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="id">
-					<button id="idCheck_btn" class="btn" onClick="">중복확인</button></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>비밀번호 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="password"></td>				
-				</tr>
-				<tr class="labelTr">
-					<td><label>비밀번호 확인 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="passwordCheck"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>이름 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="userName"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>전화번호 </label></td>
-				</tr>
-				<tr >
-					<td><input type="text" name="phoneNum"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>주소 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="address"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><button id="submit_btn" class="btn" onClick=""><p>SIGN UP</p></button></td>
-				</tr>		
-			</table>
-		</form>
+		<div>
+			<form name="signupForm">
+				<table>
+					<tr class="labelTr">
+						<td><label>아이디 </label></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="id">
+						<button id="idCheck_btn" class="btn" onClick="">중복확인</button></td>
+					</tr>
+					<tr class="labelTr">
+						<td><label>비밀번호 </label></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="password"></td>				
+					</tr>
+					<tr class="labelTr">
+						<td><label>비밀번호 확인 </label></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="passwordCheck"></td>
+					</tr>
+					<tr class="labelTr">
+						<td><label>이름 </label></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="userName"></td>
+					</tr>
+					<tr class="labelTr">
+						<td><label>전화번호 </label></td>
+					</tr>
+					<tr >
+						<td><input type="text" name="phoneNum"></td>
+					</tr>
+					<tr class="labelTr">
+						<td><label>주소 </label></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="address"></td>
+					</tr>
+					<tr class="labelTr">
+						<td><button id="signup_btn" class="btn" onClick=""><p>SIGN UP</p></button></td>
+					</tr>		
+				</table>
+			</form>
+		</div>
 	</div>
 	
 	<%@ include file="footer.jsp" %>	<!-- footer -->
