@@ -287,7 +287,7 @@
 	<script src="/PaM/src/Javascript/postSearch.js"></script>  <!-- postSearch() -->
 	<script src="/PaM/src/Javascript/readMoreButton.js"></script>  <!-- readMore() -->
 	<script src="/PaM/src/Javascript/scrollPage.js"></script>  <!-- scrollPage() -->
-	
+		
 </head>
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->

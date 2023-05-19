@@ -14,9 +14,12 @@
 				<li>
 					<c:if test="${sessionScope.sign_in_user == null}">
 						<a href="/PaM/login">로그인</a>
+						<script>sessionStorage.clear()</script>
 					</c:if>
 					<c:if test="${sessionScope.sign_in_user != null}">
 						<a href="https://www.naver.com">${sessionScope.sign_in_user.user_name}</a>
+						<script>sessionStorage.setItem('sign_in_user_id', '${sessionScope.sign_in_user.user_id}')</script>
+						<script>sessionStorage.setItem('sign_in_user_perm', '${sessionScope.sign_in_user.user_permission}')</script>
 					</c:if>
 				</li>
 				<li>|</li>

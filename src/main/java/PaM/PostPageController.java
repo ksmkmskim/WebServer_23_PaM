@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +33,9 @@ public class PostPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PostDAO pdao = new PostDAO();
 		int pid = Integer.parseInt(request.getParameter("id"));
+		request.setAttribute("pid", pid);
 		
-		Post p = pdao.getPost(pid);
-		request.setAttribute("post", p);
 		getServletContext().getRequestDispatcher(POST_PAGE).forward(request, response);
 	}
 
@@ -44,7 +44,16 @@ public class PostPageController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.setContentType("application/x-json; charset=UTF-8");
+		PostDAO pdao = new PostDAO();
+		
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		
+		Post p = pdao.getPost(pid);
+		
+		ObjectMapper om = new ObjectMapper();
+		String result = om.writeValueAsString(p);
+		response.getWriter().write(result);
 	}
 
 }
