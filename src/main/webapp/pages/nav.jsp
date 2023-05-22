@@ -25,7 +25,7 @@
 				<li>|</li>
 				<li>
 					<c:if test="${sessionScope.sign_in_user == null}">
-						<a href="">회원가입</a>
+						<a href="/PaM/signup">회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.sign_in_user != null}">
 						<a href="/PaM/logout">로그아웃</a>

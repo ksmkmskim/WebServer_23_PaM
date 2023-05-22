@@ -100,6 +100,7 @@
 		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/PaM/src/Javascript/signup.js"></script>
 	<script type="text/javascript" src="/PaM/src/Javascript/idCheck.js"></script>
 </head>
 <body>
@@ -120,41 +121,41 @@
 					<td><label>비밀번호 </label></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="password"></td>				
+					<td><input type="password" name="pw"></td>				
 				</tr>
 				<tr class="labelTr">
 					<td><label>비밀번호 확인 </label></td>
 				</tr>
 				<tr>
-					<td><input type="password" name="passwordCheck"></td>
+					<td><input type="password" name="pwCheck"></td>
 				</tr>
 				<tr class="labelTr">
 					<td><label>이름 </label></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="userName"></td>
+					<td><input type="text" name="name"></td>
 				</tr>
 				<tr class="labelTr">
 					<td><label>전화번호 </label></td>
 				</tr>
 				<tr >
-					<td><input type="text" name="phoneNum"></td>
+					<td><input type="text" name="tel"></td>
 				</tr>
 				<tr class="labelTr">
 					<td><label>주소 </label></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="address"></td>
+					<td><input type="text" name="addr"></td>
 				</tr>
 				<tr class="labelTr">
 					<td><label>권한 </label></td>
 				</tr>
 				<tr>
-					<td style="padding-top: 8px;"><input type="radio" id="radiobox" name="authority" value="seller">판매자
-					<input type="radio" id="radiobox" name="authority" value="public">일반사용자</td>
+					<td style="padding-top: 8px;"><input type="radio" id="radiobox" name="permission" value="2">2
+					<input type="radio" id="radiobox" name="permission" value="1">1</td>
 				</tr>
 				<tr class="labelTr">
-					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="signup()"></td>
+					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()"></td>
 				</tr>		
 			</table>
 		</form>
