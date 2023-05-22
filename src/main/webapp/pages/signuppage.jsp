@@ -90,6 +90,14 @@
 		    color:red;
 		    font-weight: 700;
 		}
+		#radiobox{
+			width: 25px;
+			height: 16px;
+			font-size: 20px;
+		}
+		#radiobox:checked{
+			accent-color: #364448;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/PaM/src/Javascript/idCheck.js"></script>
@@ -137,6 +145,13 @@
 				</tr>
 				<tr>
 					<td><input type="text" name="address"></td>
+				</tr>
+				<tr class="labelTr">
+					<td><label>권한 </label></td>
+				</tr>
+				<tr>
+					<td style="padding-top: 8px;"><input type="radio" id="radiobox" name="authority" value="seller">판매자
+					<input type="radio" id="radiobox" name="authority" value="public">일반사용자</td>
 				</tr>
 				<tr class="labelTr">
 					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="signup()"></td>
