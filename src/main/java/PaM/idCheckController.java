@@ -45,13 +45,14 @@ public class idCheckController extends HttpServlet {
 		UserDAO udao = new UserDAO();
 		
 		String input_id = "";
-		input_id = request.getParameter("id");
+		input_id = request.getParameter("input_id");
 		
-		User get_user= udao.getUser(input_id);
+		User get_u = udao.getUser(input_id);
 		
 		ObjectMapper om = new ObjectMapper();
-		String result = om.writeValueAsString(get_user);
+		String result = om.writeValueAsString(get_u);
 		response.getWriter().write(result);
+		
 	}
 
 }

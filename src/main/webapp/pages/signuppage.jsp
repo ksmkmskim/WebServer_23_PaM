@@ -108,7 +108,7 @@
 				<tr>
 					<td id="idCheckResult"></td>
 				</tr>
-				<tr class="labelTr">
+				<tr class="labelTr" id="idCheckResult2">
 					<td><label>비밀번호 </label></td>
 				</tr>
 				<tr>
