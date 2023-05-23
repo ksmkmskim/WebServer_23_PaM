@@ -106,59 +106,57 @@
 <body>
 	<div align="center" id="patAndMat"><a href="/PaM/main" >PAT & MAT</a></div>
 	<div id="signupBox" align="center">
-		<form name="signupForm" action="/PaM/signup" method="post">
-			<table>
-				<tr class="labelTr">
-					<td><label>아이디 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="id" onKeyUp="idCheck()"></td>
-				</tr>
-				<tr>
-					<td id="idCheckResult"></td>
-				</tr>
-				<tr class="labelTr" id="idCheckResult2">
-					<td><label>비밀번호 </label></td>
-				</tr>
-				<tr>
-					<td><input type="password" name="pw"></td>				
-				</tr>
-				<tr class="labelTr">
-					<td><label>비밀번호 확인 </label></td>
-				</tr>
-				<tr>
-					<td><input type="password" name="pwCheck"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>이름 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="name"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>전화번호 </label></td>
-				</tr>
-				<tr >
-					<td><input type="text" name="tel"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>주소 </label></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="addr"></td>
-				</tr>
-				<tr class="labelTr">
-					<td><label>권한 </label></td>
-				</tr>
-				<tr>
-					<td style="padding-top: 8px;"><input type="radio" id="radiobox" name="permission" value="2">2
-					<input type="radio" id="radiobox" name="permission" value="1">1</td>
-				</tr>
-				<tr class="labelTr">
-					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()"></td>
-				</tr>		
-			</table>
-		</form>
+		<table>
+			<tr class="labelTr">
+				<td><label>아이디 </label></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="id" onKeyUp="idCheck()"></td>
+			</tr>
+			<tr>
+				<td id="idCheckResult"></td>
+			</tr>
+			<tr class="labelTr" id="idCheckResult2">
+				<td><label>비밀번호 </label></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="pw"></td>				
+			</tr>
+			<tr class="labelTr">
+				<td><label>비밀번호 확인 </label></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="pwCheck"></td>
+			</tr>
+			<tr class="labelTr">
+				<td><label>이름 </label></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr class="labelTr">
+				<td><label>전화번호 </label></td>
+			</tr>
+			<tr >
+				<td><input type="text" name="tel"></td>
+			</tr>
+			<tr class="labelTr">
+				<td><label>주소 </label></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="addr"></td>
+			</tr>
+			<tr class="labelTr">
+				<td><label>권한 </label></td>
+			</tr>
+			<tr>
+				<td style="padding-top: 8px;"><input type="radio" id="radiobox" name="permission" value="1">일반 사용자
+				<input type="radio" id="radiobox" name="permission" value="2">판매자</td>
+			</tr>
+			<tr class="labelTr">
+				<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()"></td>
+			</tr>		
+		</table>
 	</div>
 	
 	<%@ include file="footer.jsp" %>	<!-- footer -->
