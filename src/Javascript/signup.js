@@ -20,7 +20,7 @@ function userAdd(){
 	
 	console.log(input_permission);
 	
-	if($(input_pw).val() == $(input_pwCheck).val()){
+	if($(input_pw).val() == $(input_pwCheck).val() && input_pw.length > 7){
 		$.ajax({
 		    type:"POST",
 		    url:url,
@@ -48,6 +48,8 @@ function userAdd(){
 		            alert(error);
 	        }
 	    })
+	}else if(input_pw.length < 7){
+		alert("비밀번호의 길이가 너무 짧습니다. 다시 확인하세요.");
 	}else{
 		alert("비밀번호가 일치하지 않습니다. 다시 확인하세요.");
 	}
