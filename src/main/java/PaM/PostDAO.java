@@ -39,7 +39,7 @@ public class PostDAO {
 	public void addPost(Post p) {
 		open();
 		String sql_post = "insert into post_table(car_name, car_brand, car_type, car_price, car_mile, car_etc, post_date, post_user) values(?, ?, ?, ?, ?, ?, ?, ?)";
-		String sql_img = "insert into img_table(img_post_id, car_img) values(?, ?)";
+		String sql_img = "insert into img_table(img_post_id, car_img) values(LAST_INSERT_ID(), ?)";
 				
 		try {
 			pstmt = conn.prepareStatement(sql_post);
@@ -54,10 +54,8 @@ public class PostDAO {
 			pstmt.executeUpdate();
 			
 			pstmt = conn.prepareStatement(sql_img);
-			pstmt.setInt(1, p.getPost_id());
-			
 			for(String img : p.getImg_list()) {
-				pstmt.setString(2, img.replace("\\","/"));
+				pstmt.setString(1, img.replace("\\","/"));
 				pstmt.executeUpdate();
 			}
 			
@@ -72,7 +70,7 @@ public class PostDAO {
 		open();
 		String sql_post = "update post_table set car_name=? car_brand=? car_type=? car_price=? car_mile=? car_etc=? where post_id=?";
 		String sql_del_img = "delete from img_table where img_post_id=?";
-		String sql_add_img = "insert into img_table(img_post_id, car_img) values(?, ?)";
+		String sql_add_img = "insert into img_table(img_post_id, car_img) values(?, ?)";	//duplicate로 수정할 수 있을 듯, addPost랑 합칠 수도 있을 듯
 		
 		try {
 			pstmt = conn.prepareStatement(sql_post);
