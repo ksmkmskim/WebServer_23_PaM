@@ -38,7 +38,7 @@ public class PostDAO {
 	
 	public void addPost(Post p) {
 		open();
-		String sql_post = "insert into post_table(car_name, car_brand, car_type, car_price, car_mile, car_etc, post_date, post_user) values(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql_post = "insert into post_table(car_name, car_brand, car_type, car_price, car_mile, car_etc, post_date, post_user) values(?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 		String sql_img = "insert into img_table(img_post_id, car_img) values(LAST_INSERT_ID(), ?)";
 				
 		try {
@@ -49,8 +49,7 @@ public class PostDAO {
 			pstmt.setString(4, p.getCar_price());
 			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
-			pstmt.setString(7, p.getPost_date());
-			pstmt.setString(8, p.getPost_user().getUser_id());
+			pstmt.setString(7, p.getPost_user().getUser_id());
 			pstmt.executeUpdate();
 			
 			pstmt = conn.prepareStatement(sql_img);
