@@ -1,7 +1,7 @@
 /*
-	postSearch() function
+	searchPost() function
 */
-function postSearch(scrollChk = false){
+function searchPost(scrollChk = false){
     var url="http://localhost:8080/PaM/main";
     let types = document.getElementsByName("car_type");
     let brands = document.getElementsByName("car_brand");

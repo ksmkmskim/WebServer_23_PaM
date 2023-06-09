@@ -284,10 +284,10 @@
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>cpage = 1;</script>  <!-- current page = 1 -->
-	<script src="/PaM/src/Javascript/postSearch.js"></script>  <!-- postSearch() -->
+	<script src="/PaM/src/Javascript/searchPost.js"></script>  <!-- searchPost() -->
 	<script src="/PaM/src/Javascript/readMoreButton.js"></script>  <!-- readMore() -->
 	<script src="/PaM/src/Javascript/scrollPage.js"></script>  <!-- scrollPage() -->
-		
+	<script src="/PaM/src/Javascript/addPost.js"></script>  <!-- addPost() -->	
 </head>
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
@@ -306,7 +306,7 @@
 			</span>
 			<span id="search_bar">
 				<div><h1>어떤 차를 찾으세요?</h1></div>
-				<div><input type="text" name="search" onKeyUp="postSearch()" placeholder="모델명을 입력해주세요. 예) K9"></div>
+				<div><input type="text" name="search" onKeyUp="searchPost()" placeholder="모델명을 입력해주세요. 예) K9"></div>
 			</span>
 		</div>
 		<div id="filter_box">
@@ -319,59 +319,59 @@
 			<div id="filter_list">
 				<span>
 					<ul class="filter">
-						<li><input type="checkbox" id="ct1" name="car_type" onClick="postSearch()" value="슈퍼카"><label for="ct1"><span>슈퍼카</span></label></li>
-						<li><input type="checkbox" id="ct2" name="car_type" onClick="postSearch()" value="스포츠카"><label for="ct2"><span>스포츠카</span></label></li>
-						<li><input type="checkbox" id="ct3" name="car_type" onClick="postSearch()" value="쿠페"><label for="ct3"><span>쿠페</span></label></li>
-						<li><input type="checkbox" id="ct4" name="car_type" onClick="postSearch()" value="머슬카"><label for="ct4"><span>머슬카</span></label></li>
-						<li><input type="checkbox" id="ct5" name="car_type" onClick="postSearch()" value="세단"><label for="ct5"><span>세단</span></label></li>
+						<li><input type="checkbox" id="ct1" name="car_type" onClick="searchPost()" value="슈퍼카"><label for="ct1"><span>슈퍼카</span></label></li>
+						<li><input type="checkbox" id="ct2" name="car_type" onClick="searchPost()" value="스포츠카"><label for="ct2"><span>스포츠카</span></label></li>
+						<li><input type="checkbox" id="ct3" name="car_type" onClick="searchPost()" value="쿠페"><label for="ct3"><span>쿠페</span></label></li>
+						<li><input type="checkbox" id="ct4" name="car_type" onClick="searchPost()" value="머슬카"><label for="ct4"><span>머슬카</span></label></li>
+						<li><input type="checkbox" id="ct5" name="car_type" onClick="searchPost()" value="세단"><label for="ct5"><span>세단</span></label></li>
 						<li class="exposed">...</li>
-						<br class="hidden"><li class="hidden"><input type="checkbox" id="ct6" name="car_type" onClick="postSearch()" value="SUV"><label for="ct6"><span>SUV</span></label></li>
-						<li class="hidden"><input type="checkbox" id="ct7" name="car_type" onClick="postSearch()" value="픽업 트럭"><label for="ct7"><span>픽업 트럭</span></label></li>
-						<li class="hidden"><input type="checkbox" id="ct8" name="car_type" onClick="postSearch()" value="트럭"><label for="ct8"><span>트럭</span></label></li>
+						<br class="hidden"><li class="hidden"><input type="checkbox" id="ct6" name="car_type" onClick="searchPost()" value="SUV"><label for="ct6"><span>SUV</span></label></li>
+						<li class="hidden"><input type="checkbox" id="ct7" name="car_type" onClick="searchPost()" value="픽업 트럭"><label for="ct7"><span>픽업 트럭</span></label></li>
+						<li class="hidden"><input type="checkbox" id="ct8" name="car_type" onClick="searchPost()" value="트럭"><label for="ct8"><span>트럭</span></label></li>
 					</ul>
 				</span>
 				<span>
 					<ul class="filter">
-						<li><input type="checkbox" id="cb1" name="car_brand" onClick="postSearch()" value="현대"><label for="cb1"><span>현대</span></label></li>
-						<li><input type="checkbox" id="cb2" name="car_brand" onClick="postSearch()" value="기아"><label for="cb2"><span>기아</span></label></li>
-						<li><input type="checkbox" id="cb3" name="car_brand" onClick="postSearch()" value="도요타"><label for="cb3"><span>도요타</span></label></li>
-						<li><input type="checkbox" id="cb4" name="car_brand" onClick="postSearch()" value="혼다"><label for="cb4"><span>혼다</span></label></li>
-						<li><input type="checkbox" id="cb5" name="car_brand" onClick="postSearch()" value="닛산"><label for="cb5"><span>닛산</span></label></li>
+						<li><input type="checkbox" id="cb1" name="car_brand" onClick="searchPost()" value="현대"><label for="cb1"><span>현대</span></label></li>
+						<li><input type="checkbox" id="cb2" name="car_brand" onClick="searchPost()" value="기아"><label for="cb2"><span>기아</span></label></li>
+						<li><input type="checkbox" id="cb3" name="car_brand" onClick="searchPost()" value="도요타"><label for="cb3"><span>도요타</span></label></li>
+						<li><input type="checkbox" id="cb4" name="car_brand" onClick="searchPost()" value="혼다"><label for="cb4"><span>혼다</span></label></li>
+						<li><input type="checkbox" id="cb5" name="car_brand" onClick="searchPost()" value="닛산"><label for="cb5"><span>닛산</span></label></li>
 						<li class="exposed">...</li>
-						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb6" name="car_brand" onClick="postSearch()" value="르노"><label for="cb6"><span>르노</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb7" name="car_brand" onClick="postSearch()" value="부가티"><label for="cb7"><span>부가티</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb8" name="car_brand" onClick="postSearch()" value="볼보"><label for="cb8"><span>볼보</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb9" name="car_brand" onClick="postSearch()" value="코닉세그"><label for="cb9"><span>코닉세그</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb10" name="car_brand" onClick="postSearch()" value="메르세데스-벤츠"><label for="cb10"><span>메르세데스-벤츠</span></label></li>
-						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb11" name="car_brand" onClick="postSearch()" value="포르쉐"><label for="cb11"><span>포르쉐</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb12" name="car_brand" onClick="postSearch()" value="폭스바겐"><label for="cb12"><span>폭스바겐</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb13" name="car_brand" onClick="postSearch()" value="BMW"><label for="cb13"><span>BMW</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb14" name="car_brand" onClick="postSearch()" value="아우디"><label for="cb14"><span>아우디</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb15" name="car_brand" onClick="postSearch()" value="롤스로이스"><label for="cb15"><span>롤스로이스</span></label></li>
-						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb16" name="car_brand" onClick="postSearch()" value="벤틀리"><label for="cb16"><span>벤틀리</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb17" name="car_brand" onClick="postSearch()" value="맥라렌"><label for="cb17"><span>맥라렌</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb18" name="car_brand" onClick="postSearch()" value="재규어"><label for="cb18"><span>재규어</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb19" name="car_brand" onClick="postSearch()" value="쉐보레"><label for="cb19"><span>쉐보레</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb20" name="car_brand" onClick="postSearch()" value="지프"><label for="cb20"><span>지프</span></label></li>
-						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb21" name="car_brand" onClick="postSearch()" value="테슬라"><label for="cb21"><span>테슬라</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb22" name="car_brand" onClick="postSearch()" value="포드"><label for="cb22"><span>포드</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb23" name="car_brand" onClick="postSearch()" value="닷지"><label for="cb23"><span>닷지</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb24" name="car_brand" onClick="postSearch()" value="페라리"><label for="cb24"><span>페라리</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb25" name="car_brand" onClick="postSearch()" value="람보르기니"><label for="cb25"><span>람보르기니</span></label></li>
-						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb26" name="car_brand" onClick="postSearch()" value="마세라티"><label for="cb26"><span>마세라티</span></label></li>
-						<li class="hidden"><input type="checkbox" id="cb27" name="car_brand" onClick="postSearch()" value="파가니"><label for="cb27"><span>파가니</span></label></li>
+						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb6" name="car_brand" onClick="searchPost()" value="르노"><label for="cb6"><span>르노</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb7" name="car_brand" onClick="searchPost()" value="부가티"><label for="cb7"><span>부가티</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb8" name="car_brand" onClick="searchPost()" value="볼보"><label for="cb8"><span>볼보</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb9" name="car_brand" onClick="searchPost()" value="코닉세그"><label for="cb9"><span>코닉세그</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb10" name="car_brand" onClick="searchPost()" value="메르세데스-벤츠"><label for="cb10"><span>메르세데스-벤츠</span></label></li>
+						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb11" name="car_brand" onClick="searchPost()" value="포르쉐"><label for="cb11"><span>포르쉐</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb12" name="car_brand" onClick="searchPost()" value="폭스바겐"><label for="cb12"><span>폭스바겐</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb13" name="car_brand" onClick="searchPost()" value="BMW"><label for="cb13"><span>BMW</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb14" name="car_brand" onClick="searchPost()" value="아우디"><label for="cb14"><span>아우디</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb15" name="car_brand" onClick="searchPost()" value="롤스로이스"><label for="cb15"><span>롤스로이스</span></label></li>
+						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb16" name="car_brand" onClick="searchPost()" value="벤틀리"><label for="cb16"><span>벤틀리</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb17" name="car_brand" onClick="searchPost()" value="맥라렌"><label for="cb17"><span>맥라렌</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb18" name="car_brand" onClick="searchPost()" value="재규어"><label for="cb18"><span>재규어</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb19" name="car_brand" onClick="searchPost()" value="쉐보레"><label for="cb19"><span>쉐보레</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb20" name="car_brand" onClick="searchPost()" value="지프"><label for="cb20"><span>지프</span></label></li>
+						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb21" name="car_brand" onClick="searchPost()" value="테슬라"><label for="cb21"><span>테슬라</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb22" name="car_brand" onClick="searchPost()" value="포드"><label for="cb22"><span>포드</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb23" name="car_brand" onClick="searchPost()" value="닷지"><label for="cb23"><span>닷지</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb24" name="car_brand" onClick="searchPost()" value="페라리"><label for="cb24"><span>페라리</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb25" name="car_brand" onClick="searchPost()" value="람보르기니"><label for="cb25"><span>람보르기니</span></label></li>
+						<br class="hidden"><li class="hidden"><input type="checkbox" id="cb26" name="car_brand" onClick="searchPost()" value="마세라티"><label for="cb26"><span>마세라티</span></label></li>
+						<li class="hidden"><input type="checkbox" id="cb27" name="car_brand" onClick="searchPost()" value="파가니"><label for="cb27"><span>파가니</span></label></li>
 					</ul>
 				</span>
 			</div>
 		</div>
-		<button id="post_btn"><div>+</div></button>
+		<button id="post_btn" onClick="addPost()"><div>+</div></button>
 		<div id="back_color"></div>
 	</header>
 	
 	<main>
 		
 		<div id="post_container">		<!-- 포스트 이동 추가, 마우스 올릴 시 정보표시 기능 추가 필요 -->
-			<ul></ul><script>postSearch();</script>
+			<ul></ul><script>searchPost();</script>
 		</div>
 	</main>
 	

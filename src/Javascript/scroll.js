@@ -9,7 +9,7 @@
 			 const fullHeight = fullContent.clientHeight;
 			 const scrollPosition = pageYOffset;
 			 if(fullHeight-screenHeight/2 <= scrollPosition){
-				 postSearch(true);
+				 searchPost(true);
 			 }
 		 }
  }
