@@ -18,7 +18,7 @@ function idCheck(){
 			}else{
 				document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이미 사용중인 아이디입니다.</P>";
 			}
-			document.getElementById("idCheckResult2").innerHTML = "<td style=\"padding-top: 0px;\"><label>비밀번호</label></td>";
+			//document.getElementById("idCheckResult2").innerHTML = "<td style=\"padding-top: 0px;\"><label>비밀번호</label></td>";
 			
 		},
 		error : function(request,status,error){
