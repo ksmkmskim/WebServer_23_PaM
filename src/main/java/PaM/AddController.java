@@ -46,19 +46,28 @@ public class AddController extends HttpServlet {
 		String directory = "D:/Git/WebServer_23_PaM/database/post_img";
 		int sizeLimit = 100*1024*1024;	
 		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		// 지정경로에 파일 자동 저장됨
+		Post p = new Post();
+		List<String> img_list = new ArrayList<>();
+		PostDAO pdao = new PostDAO();
+		UserDAO udao = new UserDAO();
 		
-		System.out.println("post");
-		System.out.println(multi.getParameter("car_name"));
-		System.out.println(multi.getParameter("car_type"));
-		System.out.println(multi.getParameter("car_brand"));
-		System.out.println(multi.getParameter("car_price"));
-		System.out.println(multi.getParameter("car_mile"));
-		System.out.println(multi.getParameter("car_etc"));
-		System.out.println(multi.getOriginalFileName("car_img0"));
+		p.setCar_name(multi.getParameter("car_name"));
+		p.setCar_type(multi.getParameter("car_type"));
+		p.setCar_brand(multi.getParameter("car_brand"));
+		p.setCar_price(Integer.parseInt(multi.getParameter("car_price")));
+		p.setCar_mile(Integer.parseInt(multi.getParameter("car_mile")));
+		p.setCar_etc(multi.getParameter("car_etc"));
+		p.setPost_user(udao.getUser(multi.getParameter("post_user")));
+
 		Enumeration e = multi.getFileNames();
 		while(e.hasMoreElements()) {
-			System.out.println(multi.getOriginalFileName(e.nextElement().toString()));
+			img_list.add("/post_img/" + multi.getFilesystemName(e.nextElement().toString()));
 		}
+		
+		p.setImg_list(img_list);
+		
+		pdao.addPost(p);
 
 		response.getWriter().write("");
 	}

@@ -17,9 +17,9 @@ function getPostInfo(pid){
 			var post_user = data.post_user.user_name;
 			var post_date = data.post_date;
 			var car_name = data.car_brand + ' ' + data.car_name;
-			var car_price = data.car_price + ' 원';
+			var car_price = data.car_price.toLocaleString() + ' 원';
 			var car_type = data.car_type;
-			var car_mile = data.car_type + ' Km';
+			var car_mile = data.car_mile.toLocaleString() + ' Km';
 			var car_etc = data.car_etc;
 			var car_imgs = data.img_list;
 			

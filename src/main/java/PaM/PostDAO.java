@@ -39,22 +39,32 @@ public class PostDAO {
 	public void addPost(Post p) {
 		open();
 		String sql_post = "insert into post_table(car_name, car_brand, car_type, car_price, car_mile, car_etc, post_date, post_user) values(?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
-		String sql_img = "insert into img_table(img_post_id, car_img) values(LAST_INSERT_ID(), ?)";
+		String sql_pid = "select LAST_INSERT_ID()";
+		String sql_img = "insert into img_table(img_post_id, car_img) values(?, ?)";
 				
 		try {
 			pstmt = conn.prepareStatement(sql_post);
 			pstmt.setString(1, p.getCar_name());
 			pstmt.setString(2, p.getCar_brand());
 			pstmt.setString(3, p.getCar_type());
-			pstmt.setString(4, p.getCar_price());
+			pstmt.setLong(4, p.getCar_price());
 			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
 			pstmt.setString(7, p.getPost_user().getUser_id());
 			pstmt.executeUpdate();
 			
+			int pid = 0;
+			
+			pstmt = conn.prepareStatement(sql_pid);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				pid = rs.getInt("LAST_INSERT_ID()");
+			}
+			
 			pstmt = conn.prepareStatement(sql_img);
 			for(String img : p.getImg_list()) {
-				pstmt.setString(1, img.replace("\\","/"));
+				pstmt.setInt(1, pid);
+				pstmt.setString(2, img.replace("\\","/"));
 				pstmt.executeUpdate();
 			}
 			
@@ -76,7 +86,7 @@ public class PostDAO {
 			pstmt.setString(1, p.getCar_name());
 			pstmt.setString(2, p.getCar_brand());
 			pstmt.setString(3, p.getCar_type());
-			pstmt.setString(4, p.getCar_price());
+			pstmt.setLong(4, p.getCar_price());
 			pstmt.setLong(5, p.getCar_mile());
 			pstmt.setString(6, p.getCar_etc());
 			pstmt.setInt(7, p.getPost_id());

@@ -42,7 +42,7 @@ function searchPost(scrollChk = false){
             	var $post_div = $('<div class="post"></div>');
             	var $post_img = $('<div class="post_img"><img src="'+data[i].img_list[0]+'"></div>');
             	var $post_info_div = $('<div class="post_info"></div>');
-            	var $post_info = $('<span class="car_info">'+data[i].car_brand +' '+ data[i].car_name+'</span><span class="car_price">'+data[i].car_price+' 원</span>');
+            	var $post_info = $('<span class="car_info">'+data[i].car_brand +' '+ data[i].car_name+'</span><span class="car_price">'+data[i].car_price.toLocaleString()+' 원</span>');
             	var $post_info_hr = $('<hr>');
             	var $post_rm_btn = $('<button class="read_more_btn" onClick="location.href=\'/PaM/post?id='+data[i].post_id+'\'">MORE INFO</button>');
             	

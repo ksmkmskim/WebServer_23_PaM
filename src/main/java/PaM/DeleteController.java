@@ -1,6 +1,9 @@
 package PaM;
 
 import java.io.IOException;
+import java.util.List;
+import java.io.File;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +34,22 @@ public class DeleteController extends HttpServlet {
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		PostDAO pdao = new PostDAO();
 		Post p = pdao.getPost(pid);
+		List<String> img_list = p.getImg_list();
+		
+		for(String img : img_list) {
+		    	
+			File file = new File("D:/Git/WebServer_23_PaM/database" + img);
+			    
+			   if( file.exists() ){
+			   	if(file.delete()){
+			   		System.out.println("파일삭제 성공");
+			   	}else{
+			   		System.out.println("파일삭제 실패");
+			   	}
+			   }else{
+			   	System.out.println("파일이 존재하지 않습니다.");
+			   }
+		}
 		
 		pdao.deletePost(p);
 		request.setAttribute("msg", "게시물이 삭제되었습니다.");
