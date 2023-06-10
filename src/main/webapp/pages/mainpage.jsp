@@ -287,7 +287,7 @@
 	<script src="/PaM/src/Javascript/searchPost.js"></script>  <!-- searchPost() -->
 	<script src="/PaM/src/Javascript/readMoreButton.js"></script>  <!-- readMore() -->
 	<script src="/PaM/src/Javascript/scrollPage.js"></script>  <!-- scrollPage() -->
-	<script src="/PaM/src/Javascript/addPost.js"></script>  <!-- addPost() -->	
+	<script src="/PaM/src/Javascript/chkPerm.js"></script>  <!-- chkPerm() -->	
 </head>
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
@@ -364,7 +364,7 @@
 				</span>
 			</div>
 		</div>
-		<button id="post_btn" onClick="addPost()"><div>+</div></button>
+		<button id="post_btn" onClick="chkPerm()"><div>+</div></button>
 		<div id="back_color"></div>
 	</header>
 	

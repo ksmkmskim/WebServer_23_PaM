@@ -157,7 +157,7 @@
 					</td>
 				</tr>
 				<tr class="labelTr">
-					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()"></td>
+					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()" onsubmit="return false;"></td>
 				</tr>		
 			</table>
 		</div>
