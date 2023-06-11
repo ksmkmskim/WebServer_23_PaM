@@ -198,6 +198,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/PaM/src/Javascript/getPostInfo.js"></script>	<!-- getPostInfo() -->
 	<script src="/PaM/src/Javascript/changeImg.js"></script>  <!-- changeImg() -->
+	<script src="/PaM/src/Javascript/chkPerm.js"></script>  <!-- revisePost() -->
 	<script src="/PaM/src/Javascript/deletePost.js"></script>  <!-- deletePost() -->
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
@@ -213,7 +214,7 @@
 		</div>
 		<hr>
 		<div id="btn_box">
-			<span id="revise_btn" class="rd_btn" onClick="">수정</span>
+			<span id="revise_btn" class="rd_btn">수정</span>
 			<span id="delete_btn" class="rd_btn" >삭제</span>
 		</div>
 	</header>

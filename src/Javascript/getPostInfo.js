@@ -13,7 +13,7 @@ function getPostInfo(pid){
             pid : pid
         },
         success : function(data){
-			var post_id = data.post_id
+			var post_id = data.post_id;
 			var post_user = data.post_user.user_name;
 			var post_date = data.post_date;
 			var car_name = data.car_brand + ' ' + data.car_name;
@@ -34,7 +34,8 @@ function getPostInfo(pid){
 			$('#car_info>table>tbody>tr:nth-child(4)>td:nth-child(2)').append(car_mile);
 			$('#car_info>table>tbody>tr:nth-child(5)>td:nth-child(2)').append(car_etc);
 			
-			$('#delete_btn').attr('onClick', 'deletePost('+post_id+', \''+sessionStorage.getItem('sign_in_user_id')+'\', \''+sessionStorage.getItem('sign_in_user_perm')+'\')');
+			$('#revise_btn').attr('onClick', 'chkRevisionPerm('+post_id+')');
+			$('#delete_btn').attr('onClick', 'deletePost('+post_id+')');
 			
 			for(var i=0; i < car_imgs.length; i++){
 				if(i == 0){

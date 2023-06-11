@@ -364,7 +364,7 @@
 				</span>
 			</div>
 		</div>
-		<button id="post_btn" onClick="chkPerm()"><div>+</div></button>
+		<button id="post_btn" onClick="chkAddingPerm()"><div>+</div></button>
 		<div id="back_color"></div>
 	</header>
 	

@@ -118,10 +118,6 @@
 			cursor: pointer;
 		}
 		
-		#price{
-			
-		}
-		
 		#add_btn{
 			margin-top: 20px;
 			width: 350px;
@@ -140,6 +136,10 @@
 		    height: 20px;
 		    color:red;
 		    font-weight: 700;
+		}
+		
+		.arrow{
+			cursor: pointer;
 		}
 		
 		.c_type, .c_brand{
@@ -185,9 +185,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/PaM/src/Javascript/readMoreButton.js"></script>  <!-- readMore() -->
 	<script src="/PaM/src/Javascript/addPost.js"></script>  <!-- addPost() -->
+	<script src="/PaM/src/Javascript/chkPerm.js"></script>  <!-- addPost() -->
+	<script src="/PaM/src/Javascript/revisePost.js"></script>  <!-- addPost() -->
 <body>
 	<div align="center" id="patAndMat"><a href="/PaM/main" >PAT & MAT</a></div>
-	<form action="javascript:;" onsubmit="addPost()"> <!-- signup도 이런식으로 바꾸기 -->
+	<form action="javascript:;" onSubmit="addPost()"> <!-- signup도 이런식으로 바꾸기 -->
 		<div id="add_post_box" align="center">
 			<ul>
 				<li><label>차량 이름 </label></li>
@@ -200,8 +202,8 @@
 						<li><input type="radio" id="ct3" name="car_type" onClick="" value="쿠페"><label for="ct3"><span>쿠페</span></label></li>
 						<li><input type="radio" id="ct4" name="car_type" onClick="" value="머슬카"><label for="ct4"><span>머슬카</span></label></li>
 						<li><input type="radio" id="ct5" name="car_type" onClick="" value="세단"><label for="ct5"><span>세단</span></label></li>
-						<li class="exposed" onClick="readMore('.c_type')">▼</li>
-						<li class="hidden" onClick="readMore('.c_type')">▲</li>
+						<li class="exposed arrow" onClick="readMore('.c_type')">▼</li>
+						<li class="hidden arrow" onClick="readMore('.c_type')">▲</li>
 						<br class="hidden"><li class="hidden"><input type="radio" id="ct6" name="car_type" onClick="" value="SUV"><label for="ct6"><span>SUV</span></label></li>
 						<li class="hidden"><input type="radio" id="ct7" name="car_type" onClick="" value="픽업 트럭"><label for="ct7"><span>픽업 트럭</span></label></li>
 						<li class="hidden"><input type="radio" id="ct8" name="car_type" onClick="" value="트럭"><label for="ct8"><span>트럭</span></label></li>
@@ -215,8 +217,8 @@
 						<li><input type="radio" id="cb3" name="car_brand" onClick="" value="도요타"><label for="cb3"><span>도요타</span></label></li>
 						<li><input type="radio" id="cb4" name="car_brand" onClick="" value="혼다"><label for="cb4"><span>혼다</span></label></li>
 						<li><input type="radio" id="cb5" name="car_brand" onClick="" value="닛산"><label for="cb5"><span>닛산</span></label></li>
-						<li class="exposed" onClick="readMore('.c_brand')">▼</li>
-						<li class="hidden" onClick="readMore('.c_brand')">▲</li>
+						<li class="exposed arrow" onClick="readMore('.c_brand')">▼</li>
+						<li class="hidden arrow" onClick="readMore('.c_brand')">▲</li>
 						<br class="hidden"><li class="hidden"><input type="radio" id="cb6" name="car_brand" onClick="" value="르노"><label for="cb6"><span>르노</span></label></li>
 						<li class="hidden"><input type="radio" id="cb7" name="car_brand" onClick="" value="부가티"><label for="cb7"><span>부가티</span></label></li>
 						<li class="hidden"><input type="radio" id="cb8" name="car_brand" onClick="" value="볼보"><label for="cb8"><span>볼보</span></label></li>
@@ -257,10 +259,48 @@
 				<li><label>기타 정보 </label></li>
 				<li class="li_input"><input type="text" name="car_etc"></li>
 			</ul>
-			<input id="add_btn" type="submit" class="btn" value="등록" onsubmit="return false;">
+			<input id="add_btn" type="submit" class="btn" value="등록" onSubmit="return false;">
 		</div>
 	</form>
-	
+	<script>
+		var pid = <%= request.getParameter("id")%>;
+		if(pid != null){
+			var url="http://localhost:8080/PaM/post";
+			$.ajax({
+				type:"POST",
+		        url:url,
+		        dataType:"json",
+		        data:{
+		            pid : pid
+		        },
+		        success : function(data){
+		        	var post_id = data.post_id;
+					var post_user = data.post_user.user_id;
+					var post_date = data.post_date;
+					var car_name = data.car_name;
+					var car_type = data.car_type;
+					var car_brand = data.car_brand;
+					var car_price = data.car_price;
+					var car_mile = data.car_mile;
+					var car_etc = data.car_etc;
+					var car_imgs = data.img_list;
+					
+					$('input[name="car_name"]').val(car_name);
+					$('input:radio[name="car_type"]:radio[value="'+car_type+'"]').prop('checked', true);
+					$('input:radio[name="car_brand"]:radio[value="'+car_brand+'"]').prop('checked', true);
+					$('input[name="car_price"]').val(car_price);
+					$('input[name="car_mile"]').val(car_mile);
+					$('input[name="car_etc"]').val(car_etc);
+					$('input[name="car_img"]').attr("required", false);
+					$('form').attr("onSubmit", 'addPost('+ post_id +')');
+				},
+				error : function(request,status,error){
+					alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
+	            	alert(error);
+				}
+			});
+		}
+	</script>
 	<%@ include file="footer.jsp" %>	<!-- footer -->
 </body>
 </html>

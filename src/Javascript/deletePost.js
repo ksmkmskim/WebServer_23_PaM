@@ -1,8 +1,10 @@
 /*
 	deletePost function
  */
-function deletePost(pid, sin_user_id, sin_user_perm){
-	if(sin_user_id != 'null'){
+function deletePost(pid){
+	var sin_user_id = sessionStorage.getItem('sign_in_user_id');
+	var sin_user_perm = sessionStorage.getItem('sign_in_user_perm');
+	if(sin_user_id != null){
 		var purl="http://localhost:8080/PaM/post";
 		
 		$.ajax({
@@ -32,7 +34,7 @@ function deletePost(pid, sin_user_id, sin_user_perm){
 							alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
             				alert(error);
 						}
-					})
+					});
 				}
 				else{
 					console.log("not authorized");
@@ -42,7 +44,7 @@ function deletePost(pid, sin_user_id, sin_user_perm){
 				alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
             	alert(error);
 			}
-		})
+		});
 	}
 	else{
 		var login = '/PaM/login';

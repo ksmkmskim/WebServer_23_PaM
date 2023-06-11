@@ -1,5 +1,6 @@
 package PaM;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -77,9 +78,11 @@ public class PostDAO {
 	
 	public void revisePost(Post p) {
 		open();
-		String sql_post = "update post_table set car_name=? car_brand=? car_type=? car_price=? car_mile=? car_etc=? where post_id=?";
+		String sql_post = "update post_table set car_name=?, car_brand=?, car_type=?, car_price=?, car_mile=?, car_etc=?, post_date=CURRENT_TIMESTAMP where post_id=?";
+		String sql_img = "select * from img_table where img_post_id=?";
 		String sql_del_img = "delete from img_table where img_post_id=?";
 		String sql_add_img = "insert into img_table(img_post_id, car_img) values(?, ?)";	//duplicate로 수정할 수 있을 듯, addPost랑 합칠 수도 있을 듯
+		List<String> del_imgs = new ArrayList<>();
 		
 		try {
 			pstmt = conn.prepareStatement(sql_post);
@@ -92,16 +95,42 @@ public class PostDAO {
 			pstmt.setInt(7, p.getPost_id());
 			pstmt.executeUpdate();
 			
-			pstmt = conn.prepareStatement(sql_del_img);
-			pstmt.setInt(1, p.getPost_id());
-			pstmt.executeUpdate();
-			
-			pstmt = conn.prepareStatement(sql_add_img);
-			pstmt.setInt(1, p.getPost_id());
-			
-			for(String img : p.getImg_list()) {
-				pstmt.setString(2, img);
+			if(!p.getImg_list().isEmpty()) {
+				
+				pstmt = conn.prepareStatement(sql_img);
+				pstmt.setInt(1, p.getPost_id());
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					del_imgs.add(rs.getString("car_img").replace("\\","/"));
+				}
+				
+				for(String img : del_imgs) {
+			    	
+					File file = new File("D:/Git/WebServer_23_PaM/database" + img);
+					    
+					   if( file.exists() ){
+					   	if(file.delete()){
+					   		System.out.println("파일삭제 성공");
+					   	}else{
+					   		System.out.println("파일삭제 실패");
+					   	}
+					   }else{
+					   	System.out.println("파일이 존재하지 않습니다.");
+					   }
+				}
+				
+				pstmt = conn.prepareStatement(sql_del_img);
+				pstmt.setInt(1, p.getPost_id());
 				pstmt.executeUpdate();
+				
+				pstmt = conn.prepareStatement(sql_add_img);
+				pstmt.setInt(1, p.getPost_id());
+				
+				for(String img : p.getImg_list()) {
+					pstmt.setString(2, img);
+					pstmt.executeUpdate();
+				}
 			}
 			
 		} catch(Exception e) {

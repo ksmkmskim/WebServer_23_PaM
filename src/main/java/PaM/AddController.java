@@ -35,6 +35,11 @@ public class AddController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if(request.getParameter("id") != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			request.setAttribute("id", id);
+		}
+
 		getServletContext().getRequestDispatcher(POSTUP_PAGE).forward(request, response);
 	}
 
@@ -52,11 +57,14 @@ public class AddController extends HttpServlet {
 		PostDAO pdao = new PostDAO();
 		UserDAO udao = new UserDAO();
 		
+		if(multi.getParameter("post_id") != null) {
+			p.setPost_id(Integer.parseInt(multi.getParameter("post_id")));
+		}
 		p.setCar_name(multi.getParameter("car_name"));
 		p.setCar_type(multi.getParameter("car_type"));
 		p.setCar_brand(multi.getParameter("car_brand"));
-		p.setCar_price(Integer.parseInt(multi.getParameter("car_price")));
-		p.setCar_mile(Integer.parseInt(multi.getParameter("car_mile")));
+		p.setCar_price(Long.parseLong(multi.getParameter("car_price")));
+		p.setCar_mile(Long.parseLong(multi.getParameter("car_mile")));
 		p.setCar_etc(multi.getParameter("car_etc"));
 		p.setPost_user(udao.getUser(multi.getParameter("post_user")));
 
@@ -67,7 +75,12 @@ public class AddController extends HttpServlet {
 		
 		p.setImg_list(img_list);
 		
-		pdao.addPost(p);
+		if(multi.getParameter("post_id") == null) {
+			pdao.addPost(p);
+		} else {
+			pdao.revisePost(p);
+		}
+		
 
 		response.getWriter().write("");
 	}

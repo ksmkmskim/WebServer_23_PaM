@@ -1,7 +1,7 @@
 /*
 	addPost function
  */
- function addPost(){
+ function addPost(post_id=null){
 	var url= "http://localhost:8080/PaM/add";
 	let car_name = document.getElementsByName("car_name");
 	let car_type;
@@ -29,6 +29,10 @@
 		
 		let car_img_input = document.getElementsByName("car_img");
 		let car_img = car_img_input[0].files;
+		
+		if(post_id != null){
+			form_data.append("post_id", post_id);
+		}
 		
 		form_data.append("car_name", $(car_name).val());
 		form_data.append("car_type", car_type);

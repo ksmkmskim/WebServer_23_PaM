@@ -1,25 +1,7 @@
 /*
-	chkAddingPerm function
+	revisePost function
  */
-function chkAddingPerm(){
-	var userPerm = sessionStorage.getItem('sign_in_user_perm');
-	if(userPerm == null){
-		var login = '/PaM/login';
-		location.href = login;
-	}
-	else if(userPerm < 2){
-		alert('권한이 부족합니다.');
-	}
-	else{
-		var addPost = '/PaM/add';
-		location.href = addPost;
-	}
-}
-
-/*
-	chkRevisionPerm function
- */
-function chkRevisionPerm(pid){
+function revisePost(pid){
 	var sin_user_id = sessionStorage.getItem('sign_in_user_id');
 	var sin_user_perm = sessionStorage.getItem('sign_in_user_perm');
 	if(sin_user_id != null){
