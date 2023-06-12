@@ -98,6 +98,12 @@
 		#radiobox:checked{
 			accent-color: #364448;
 		}
+		#idCheckResult > p{
+			margin-bottom: 0px;
+		}
+		#idCheckResult2 > td{
+			padding-top: 20px;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/PaM/src/Javascript/signup.js"></script>
@@ -109,7 +115,7 @@
 		<div id="signupBox" align="center">
 			<table>
 				<tr class="labelTr">
-					<td><label>아이디 </label></td>
+					<td><label>이메일 </label></td>
 				</tr>
 				<tr>
 					<td><input type="text" name="id" onKeyUp="idCheck()" required></td>
@@ -155,6 +161,9 @@
 						<input type="radio" id="radiobox" name="permission" value="1" required>일반 사용자
 						<input type="radio" id="radiobox" name="permission" value="2">판매자
 					</td>
+				</tr>
+				<tr>
+					<td id="idCheckResult3"></td>
 				</tr>
 				<tr class="labelTr">
 					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()" onsubmit="return false;"></td>

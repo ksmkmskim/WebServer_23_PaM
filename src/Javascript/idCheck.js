@@ -18,10 +18,12 @@ function idCheck(){
 				    success : function(data){
 						if(data == null){
 							document.getElementById("idCheckResult").innerHTML = "<p style=\"color: green;\">사용 가능한 아이디입니다.</P>";
+							document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=true>";
 						}else{
 							document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이미 사용중인 아이디입니다.</P>";
+							document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
 						}
-						//document.getElementById("idCheckResult2").innerHTML = "<td style=\"padding-top: 0px;\"><label>비밀번호</label></td>";
+						// document.getElementById("idCheckResult2").innerHTML = "<td style=\"padding-top: 0px;\"><label>비밀번호</label></td>";
 						
 					},
 					error : function(request,status,error){
@@ -31,11 +33,14 @@ function idCheck(){
 				})
 			}else{
 				document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이메일 주소를 입력해주세요.</P>";
+				document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
 			}
 		}else{
 			document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">아이디는 6자 이상, 20자 미만으로 사용가능합니다.</P>";
+			document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
 		}
 	}else{
 		document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이메일 형태가 아닙니다.</P>";
+		document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
 	}
 }
