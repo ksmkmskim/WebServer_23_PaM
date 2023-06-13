@@ -15,6 +15,7 @@ public class Post {
 	private String post_date;
 	private User post_user;
 	private List<String> img_list;
+	private List<Comment> cmt_list;
 	
 	public int getPost_id() {
 		return post_id;
@@ -75,6 +76,12 @@ public class Post {
 	}
 	public void setImg_list(List<String> img_list) {
 		this.img_list = img_list;
+	}
+	public List<Comment> getCmt_list() {
+		return cmt_list;
+	}
+	public void setCmt_list(List<Comment> cmt_list) {
+		this.cmt_list = cmt_list;
 	}
 	
 	@Override
