@@ -24,11 +24,11 @@
 			text-decoration: none;
 		}
 		
-		#loginBox{
+		#searchBox{
 			margin-top: 100px;
 			margin-bottom: 150px;
 		}
-		#loginBox > div{
+		#searchBox > div{
 			padding-top: 0px;
 			padding-bottom: 50px;
 			width: 600px;
@@ -36,14 +36,14 @@
 			border-radius: 30px;
 			box-shadow: 0px 0px 3px black;
 		}
-		#loginBox > div > div{
+		#searchBox > div > div{
 			padding-top: 0px;
 			margin-top: 0px;
-			margin-bottom: 40px;
+			margin-bottom: 30px;
 			border-top-left-radius: 30px;
 			border-top-right-radius: 30px;
 		}
-		#loginBox > div > form > table{
+		#searchBox > div > form > table{
 			text-align: center;
 		}
 		
@@ -57,7 +57,7 @@
 		}
 		
 		td{
-			padding-top: 35px;
+			padding-top:45px;
 		}
 		
 		input{
@@ -83,7 +83,7 @@
 			cursor: pointer;
 		}
 		
-		#login_btn{
+		#search_btn{
 			margin-top: 20px;
 			width: 406px;
 			height: 50px;
@@ -92,18 +92,16 @@
 			font-size: 12pt;
 			letter-spacing: 2px;
 		}
-		#login_btn:hover{
+		#search_btn:hover{
 			color: white;
 			background-color: #364448;
 		}
-		.choiceBtn{
-			height: 50px;
-			width: 294px;
-			background-color: #F2F5F5;
-			border: solid 3px #364448;
-			font-family: 'Lato';
-			color: #364448;
+		#choiceBtn > input{
+			height: 60px;
+			width: 300px;
 			cursor: pointer;
+			border: 0px;
+			font-family: 'Lato';
 		}
 		#choiceBtnLeft{
 			border-top-left-radius: 30px;
@@ -113,30 +111,79 @@
 			border-top-right-radius: 30px;
 			float: right;
 		}
+		label{
+			color: #485A61;
+			font-family: 'Lato';
+			font-weight: bold;
+			font-size: 12pt;
+			margin-left: 15px;
+		}
+		.inputTd{
+			padding-top: 10px;
+		}
+		.exposed{
+			display: block;
+		}
+		.hidden{
+			display: none;
+		}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div align="center" id="patAndMat"><a href="/PaM/main" >PAT & MAT</a></div>
-	<div align="center" id="loginBox">
-		<div>
-			<div style="height: 50px;">
-				<div class="choiceBtn" id="choiceBtnLeft">test</div>
-				<div class="choiceBtn" id="choiceBtnRight">test</div>
+	<div align="center" id="searchBox">
+		<div id="searchId" class="exposed">
+			<div id="choiceBtn">
+				<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: white; color:#364448;">
+				<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: #364448; color: white;">
 			</div>
-			<form name="login_form" action="/PaM/login" method="post">
+			<form name="" action="" method="post">
 				<table>
-					<tr>
-						<td><input type="text" name="id" placeholder="ID" required></td>
+					<tr align="left">
+						<td><label>이름 </label></td>
 					</tr>
 					<tr>
-						<td><input type="password" name="pwd" placeholder="PASSWORD" required></td>
+						<td class="inputTd"><input type="text" name="userName" placeholder="NAME" required></td>
+					</tr>
+					<tr align="left">
+						<td><label>전화번호 </label></td>
 					</tr>
 					<tr>
-						<td style="padding-top: 25px; padding-bottom: 25px;"><input type="submit" id="login_btn" class="btn" value="NEXT">
+						<td class="inputTd"><input type="text" name="telnum" placeholder="PHONE NUMBER" required></td>
+					</tr>
+					<tr>
+						<td style="padding-top: 25px; padding-bottom: 25px;"><input type="submit" id="search_btn" class="btn" value="NEXT">
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="searchPw" class="hidden">
+			<div id="choiceBtn">
+				<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: #364448; color: white;">
+				<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: white; color: #364448;">
+			</div>
+			<form name="" action="" method="post">
+				<table>
+					<tr align="left">
+						<td><label>이메일 </label></td>
+					</tr>
+					<tr>
+						<td class="inputTd"><input type="text" name="id" placeholder="E-Mail" required></td>
+					</tr>
+					<tr align="left"> 
+						<td><label>이름 </label></td>
+					</tr>
+					<tr>
+						<td class="inputTd"><input type="text" name="userName" placeholder="NAME" required></td>
+					</tr>
+					<tr>
+						<td style="padding-top: 25px; padding-bottom: 25px;"><input type="submit" id="search_btn" class="btn" value="NEXT">
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript" src="/PaM/src/Javascript/searchIDandPW.js"></script>
 </body>
 </html>
