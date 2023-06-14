@@ -296,7 +296,7 @@
 		#cmt_pages > li{
 			display: inline-block;
 		}
-		#cmt_pages > li:nth-child(2n-1):{
+		#cmt_pages > li:nth-child(2n-1){
 			cursor: pointer;
 		}
 		#cmt_pages > li:nth-child(2n-1):hover{
