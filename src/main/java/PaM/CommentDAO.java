@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDAO {
-	
 	Connection conn = null;
 	PreparedStatement pstmt;
 	
@@ -40,12 +39,12 @@ public class CommentDAO {
 	
 	public void addComment(Comment c){
 		open();
-		String sql = "insert into commnet_table(cmt_post_id, cmt_user_id, cmt_date, cmt_text) values(?, ?, CURRENT_TIMESTAMP, ?)";
+		String sql = "insert into comment_table(cmt_post_id, cmt_user_id, cmt_date, cmt_text) values(?, ?, CURRENT_TIMESTAMP, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, c.getCmt_id());
-			pstmt.setString(2, c.getCmt_user_id());
+			pstmt.setInt(1, c.getCmt_post_id());
+			pstmt.setString(2, c.getCmt_user().getUser_id());
 			pstmt.setString(3, c.getCmt_text());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
@@ -55,13 +54,13 @@ public class CommentDAO {
 		}
 	}
 	
-	public void deleteComment(Comment c){
+	public void deleteComment(int cid){
 		open();
-		String sql = "delete from commnet_table where cmt_id=?";
+		String sql = "delete from comment_table where cmt_id=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, c.getCmt_id());
+			pstmt.setInt(1, cid);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -91,6 +90,8 @@ public class CommentDAO {
 		open();
 		String sql = "select * from comment_table where cmt_id=?";
 		Comment c = null;
+		UserDAO udao = new UserDAO();
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cid);
@@ -100,7 +101,7 @@ public class CommentDAO {
 				c = new Comment();
 				c.setCmt_id(rs.getInt("cmt_id"));
 				c.setCmt_post_id(rs.getInt("cmt_post_id"));
-				c.setCmt_user_id(rs.getString("cmt_user_id"));
+				c.setCmt_user(udao.getUser(rs.getString("cmt_user_id")));
 				c.setCmt_date(rs.getString("cmt_date"));
 				c.setCmt_text(rs.getString("cmt_text"));
 			}
@@ -115,7 +116,7 @@ public class CommentDAO {
 	
 	public List<Comment> getCommentAll(int pid){
 		open();
-		String sql = "select * from comment_table where cmt_post_id=?";
+		String sql = "select * from comment_table where cmt_post_id=? order by cmt_date desc";
 		List<Comment> cmt_list = new ArrayList<>();
 		
 		try {

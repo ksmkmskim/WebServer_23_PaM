@@ -3,7 +3,6 @@
  */
 function revisePost(pid){
 	var sin_user_id = sessionStorage.getItem('sign_in_user_id');
-	var sin_user_perm = sessionStorage.getItem('sign_in_user_perm');
 	if(sin_user_id != null){
 		var purl="http://localhost:8080/PaM/post";
 		

@@ -4,7 +4,7 @@ public class Comment {
 	private int cmt_id;
 	private int cmt_post_id;
 	private String cmt_date;
-	private String cmt_user_id;
+	private User cmt_user;
 	private String cmt_text;
 	
 	public int getCmt_id() {
@@ -25,11 +25,11 @@ public class Comment {
 	public void setCmt_date(String cmt_date) {
 		this.cmt_date = cmt_date;
 	}
-	public String getCmt_user_id() {
-		return cmt_user_id;
+	public User getCmt_user() {
+		return cmt_user;
 	}
-	public void setCmt_user_id(String cmt_user_id) {
-		this.cmt_user_id = cmt_user_id;
+	public void setCmt_user(User cmt_user) {
+		this.cmt_user = cmt_user;
 	}
 	public String getCmt_text() {
 		return cmt_text;

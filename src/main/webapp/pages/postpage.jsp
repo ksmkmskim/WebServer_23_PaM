@@ -194,12 +194,130 @@
 			background-color: #8F8F8F;
 		}
 		
+		#cmt_box{
+			margin: 10px;
+		}
+		
+		
+		#cmt_area{
+			background-color: #F2F5F5;
+			padding: 10px 0px;
+		}
+		
+		h3{
+			margin-right: 80%;
+			font-family: 'Pretendard Variable';
+		}
+		
+		.unshown{
+			display: none;
+		}
+		.shown{
+			display: block;
+		}
+		
+		textarea[name=comment]{
+			width: 79%;
+			height: 64px;
+			margin-bottom: 7px;
+			line-height:26px;
+			border: black solid 1px;
+			border-radius: 5px;
+			box-shadow: 0 0 6px -4px black;
+			resize: none;
+			font-family: 'Pretendard Variable';
+		}
+		
+		input[type=submit]{
+			padding: 6px 27px;
+			margin-left: 74.5%;
+			background-color: #F2F5F5;
+			border: 1px solid black;
+			border-radius: 5px;
+			box-shadow: 0 0 5px -4px black;
+			font-size: 15px;
+			font-weight: bold;
+			font-family: 'Pretendard Variable';
+			cursor: pointer;
+		}
+		input[type=submit]:hover{
+			color: white;
+			background-color: #8F8F8F;
+		}
+		
+		#cmts{
+			list-style-type: none;
+			padding: 0px 10%;
+			text-align: left;
+		}
+		#cmts > li{
+			display: inline-block;
+		}
+		
+		.cmt{
+			min-width: 563.13px;
+			padding: 5px;
+			text-align: left;
+			font-family: 'Pretendard Variable';
+		}
+		.cmt > p{
+			margin: 4px 0px;
+			display: inline-block;
+		}
+		.cmt > span > p{
+			display: inline-block;
+		}
+		.cmt > span:nth-child(1) > p:nth-child(1){
+			font-weight: bold;
+		}
+		.cmt > span:nth-child(1) > p:nth-child(2){
+			margin-left: 13px;
+			font-size: 13px;
+			color: #8F8F8F;
+		}
+		.cmt > span:nth-child(2){
+			font-size: 12px;
+			vertical-align: top;
+			float: right;
+		}
+		.cmt > span:nth-child(2) > span{
+			cursor: pointer;
+		}
+		.cmt > span:nth-child(2) > span:hover{
+			text-decoration: underline;
+		}
+		
+		#cmt_pages{
+			margin-top: 35px;
+			padding: 0;
+			list-style-type: none;
+			font-family: 'Pretendard Variable';
+		}
+		#cmt_pages > li{
+			display: inline-block;
+		}
+		#cmt_pages > li:nth-child(2n-1):{
+			cursor: pointer;
+		}
+		#cmt_pages > li:nth-child(2n-1):hover{
+			text-decoration: underline;
+		}
+		
+		.selected{
+			text-decoration: underline;
+			font-weight: bold;
+		}
+		
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/PaM/src/Javascript/getPostInfo.js"></script>	<!-- getPostInfo() -->
+	<script src="/PaM/src/Javascript/getCommentInfo.js"></script>	<!-- getCommentInfo() -->
 	<script src="/PaM/src/Javascript/changeImg.js"></script>  <!-- changeImg() -->
 	<script src="/PaM/src/Javascript/chkPerm.js"></script>  <!-- revisePost() -->
 	<script src="/PaM/src/Javascript/deletePost.js"></script>  <!-- deletePost() -->
+	<script src="/PaM/src/Javascript/addComment.js"></script>  <!-- addComment() -->
+	<script src="/PaM/src/Javascript/deleteCmt.js"></script>  <!-- addComment() -->
+	<script>cmt_cpage = 1;</script>  <!-- current page = 1 -->
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->
 	
@@ -257,8 +375,31 @@
 			</div>
 			<div id="trade_btn">거래신청</div>
 		</div>
+		<div id="cmt_area">
+			<h3>댓글</h3>
+			<div id="cmt_box" class="unshown">
+				<form action="javascript:;" onSubmit="addComment(${pid})">
+					<textarea name="comment" placeholder="댓글 작성" required></textarea><br>
+					<input type="submit" value="등록">
+				</form>
+			</div>
+			<div>
+				<ul id="cmts">
+				</ul>
+			</div>
+			<div>
+				<ul id="cmt_pages">
+				</ul>
+			</div>
+		</div>
 	</main>
+	<script>
+		if(sessionStorage.getItem("sign_in_user_id") != null){
+			document.getElementById('cmt_box').className = "shown";
+		}
+	</script>
 	<script>getPostInfo(${pid})</script>
+	<script>getCommentInfo(${pid})</script>
 	<%@ include file="footer.jsp" %>	<!-- footer -->
 </body>
 </html>

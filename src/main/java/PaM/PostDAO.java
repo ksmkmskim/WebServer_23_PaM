@@ -78,7 +78,7 @@ public class PostDAO {
 	
 	public void revisePost(Post p) {
 		open();
-		String sql_post = "update post_table set car_name=?, car_brand=?, car_type=?, car_price=?, car_mile=?, car_etc=?, post_date=CURRENT_TIMESTAMP where post_id=?";
+		String sql_post = "update post_table set car_name=?, car_brand=?, car_type=?, car_price=?, car_mile=?, car_etc=? where post_id=?";
 		String sql_img = "select * from img_table where img_post_id=?";
 		String sql_del_img = "delete from img_table where img_post_id=?";
 		String sql_add_img = "insert into img_table(img_post_id, car_img) values(?, ?)";	//duplicate로 수정할 수 있을 듯, addPost랑 합칠 수도 있을 듯
@@ -107,7 +107,7 @@ public class PostDAO {
 				
 				for(String img : del_imgs) {
 			    	
-					File file = new File("D:/Git/WebServer_23_PaM/database" + img);
+					File file = new File("C:\\Users\\Administrator\\Desktop\\4-1\\웹서버프로그래밍\\기말프로젝트\\project\\database\\post_img" + img);
 					    
 					   if( file.exists() ){
 					   	if(file.delete()){
@@ -162,6 +162,7 @@ public class PostDAO {
 		Post p = null;
 		List<String> imgs = new ArrayList<>();
 		UserDAO udao = new UserDAO();
+		CommentDAO cdao = new CommentDAO();
 		
 		try {
 			pstmt = conn.prepareStatement(sql_post);
@@ -179,6 +180,7 @@ public class PostDAO {
 				p.setCar_etc(rs.getString("car_etc"));
 				p.setPost_date(rs.getString("post_date"));
 				p.setPost_user(udao.getUser(rs.getString("post_user")));
+				p.setCmt_list(cdao.getCommentAll(rs.getInt("post_id")));
 				
 				pstmt = conn.prepareStatement(sql_img);
 				pstmt.setInt(1, pid);

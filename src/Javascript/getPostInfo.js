@@ -22,6 +22,7 @@ function getPostInfo(pid){
 			var car_mile = data.car_mile.toLocaleString() + ' Km';
 			var car_etc = data.car_etc;
 			var car_imgs = data.img_list;
+			var cmt_list = data.cmt_list;
 			
 			$('#car_name>h2').append(car_name);
 			$('#car_price').append(car_price);
