@@ -129,6 +129,7 @@
 		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/PaM/src/Javascript/searchIDandPW.js"></script>
 </head>
 <body>
 	<div align="center" id="patAndMat"><a href="/PaM/main" >PAT & MAT</a></div>
@@ -138,22 +139,24 @@
 				<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: white; color:#364448;">
 				<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: #364448; color: white;">
 			</div>
-			<form name="" action="" method="post">
+			<form action="javascript:;" onSubmit="submitSearchId('searchId', 'print', 'itemIn')">
 				<table>
 					<tr align="left">
 						<td><label>이름 </label></td>
 					</tr>
 					<tr>
-						<td class="inputTd"><input type="text" name="userName" placeholder="NAME" required></td>
+						<td class="inputTd"><input type="text" name="name" placeholder="NAME" required></td>
 					</tr>
 					<tr align="left">
 						<td><label>전화번호 </label></td>
 					</tr>
 					<tr>
-						<td class="inputTd"><input type="text" name="telnum" placeholder="PHONE NUMBER" required></td>
+						<td class="inputTd"><input type="text" name="tel" placeholder="PHONE NUMBER" required></td>
 					</tr>
 					<tr>
-						<td style="padding-top: 25px; padding-bottom: 25px;"><input type="submit" id="search_btn" class="btn" value="NEXT">
+						<td style="padding-top: 25px; padding-bottom: 25px;">
+						<input type="submit" id="search_btn" class="btn" value="NEXT">
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -163,7 +166,7 @@
 				<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: #364448; color: white;">
 				<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: white; color: #364448;">
 			</div>
-			<form name="" action="" method="post">
+			<form action="javascript:;" onSubmit="submitSearchPw('searchPw', 'print')">
 				<table>
 					<tr align="left">
 						<td><label>이메일 </label></td>
@@ -178,12 +181,53 @@
 						<td class="inputTd"><input type="text" name="userName" placeholder="NAME" required></td>
 					</tr>
 					<tr>
-						<td style="padding-top: 25px; padding-bottom: 25px;"><input type="submit" id="search_btn" class="btn" value="NEXT">
+						<td style="padding-top: 25px; padding-bottom: 25px;">
+						<input type="submit" id="search_btn" class="btn" value="NEXT">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="print" class="hidden">
+			<table>
+				<tr>
+					<td><div id="itemIn" align="center"></div></td>
+				</tr>
+				<tr>
+					<td><button id="search_btn" class="btn" onClick="location.href='/PaM/login'">NEXT</button></td>
+				</tr>
+			</table>
+		</div>
+		<div id="newPw" class="hidden">
+			<div id="choiceBtn">
+					<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: #364448; color: white;">
+					<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: white; color: #364448;">
+			</div>
+			<form name="" action="" method="post">
+				<table>
+					<tr align="left">
+						<td><label>새로운 비밀번호 </label></td>
+					</tr>
+					<tr>
+						<td class="inputTd"><input type="password" name="pwd" placeholder="PASSWORD" required></td>
+					</tr>
+					<tr align="left"> 
+						<td><label>비밀번호 확인 </label></td>
+					</tr>
+					<tr>
+						<td class="inputTd"><input type="password" name="pwdCheck" placeholder="PASSWORD CHECK" required></td>
+					</tr>
+					<tr>
+						<td id="searchPwID"></td>
+					</tr>
+					<tr>
+						<td style="padding-top: 25px; padding-bottom: 25px;">
+						<input type="submit" id="search_btn" class="btn" value="NEXT" onClick="setPw('newPw', 'print')">
+						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript" src="/PaM/src/Javascript/searchIDandPW.js"></script>
 </body>
 </html>

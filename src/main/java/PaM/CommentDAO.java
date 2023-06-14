@@ -13,7 +13,7 @@ public class CommentDAO {
 	PreparedStatement pstmt;
 	
 	final String JDBC_DRIVER = "org.h2.Driver";
-	final String JDBC_URL = "jdbc:h2:tcp://localhost/D:\\Git\\WebServer_23_PaM\\database\\PaMDB";
+	final String JDBC_URL = "jdbc:h2:tcp://localhost/E:\\\\WebserverProject\\\\database/PaMDB";
 	final String JDBC_USER = "admin";
 	final String JDBC_PASSWD = "admin";
 	// JDBC_URL 로컬 환경마다 변경 필요 -> 학교 서버에 구축해서 vpn으로 접속해서 사용할 수 있도록 하면 좋을 듯

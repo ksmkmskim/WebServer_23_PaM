@@ -90,6 +90,11 @@
 			color: white;
 			background-color: #364448;
 		}
+		a{
+			padding-left: 0px;
+			text-decoration: none;
+			color: black;
+		}
 	</style>
 </head>
 <body>
@@ -111,6 +116,13 @@
 					</c:if>
 					<tr>
 						<td style="padding-top: 25px; padding-bottom: 25px;"><input type="submit" id="login_btn" class="btn" value="LOGIN">
+					</tr>
+					<tr id="link">
+						<td rowspan="3">
+						<a href="/PaM/SearchId">아이디/비밀번호 찾기</a>
+						<h3>/</h3>
+						<a href="/PaM/signup">회원가입</a>
+						</td>
 					</tr>
 				</table>
 			</form>
