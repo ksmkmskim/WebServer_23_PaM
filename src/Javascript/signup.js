@@ -4,7 +4,7 @@
 function userAdd(){
 	var url= "http://localhost:8080/PaM/signup";
 	let input_id = document.getElementsByName("id");
-	let input_idCheck = document.getElementsByName("idCheck");
+	let input_idCheck = document.getElementsByName("input_idCheck");
 	let input_pw = document.getElementsByName("pw");
 	let input_pwCheck = document.getElementsByName("pwCheck");
 	let input_name = document.getElementsByName("name");

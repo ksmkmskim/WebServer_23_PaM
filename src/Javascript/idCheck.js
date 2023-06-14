@@ -5,7 +5,7 @@ function idCheck(){
 	var url= "http://localhost:8080/PaM/idCheck";
 	let input_id = document.getElementsByName("id");
 	
-	if($(input_id).val().indexOf('@') != -1 ){
+	if(($(input_id).val()).indexOf('@') != -1){
 		if(($(input_id).val().indexOf('@') > 5) && ($(input_id).val().indexOf('@') < 20)){
 			if(($(input_id).val().indexOf('@')+1) < ($(input_id).val().length)){
 			    $.ajax({
@@ -18,10 +18,10 @@ function idCheck(){
 				    success : function(data){
 						if(data == null){
 							document.getElementById("idCheckResult").innerHTML = "<p style=\"color: green;\">사용 가능한 아이디입니다.</P>";
-							document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=true>";
+							document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"input_idCheck\" value=true>";
 						}else{
 							document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이미 사용중인 아이디입니다.</P>";
-							document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
+							document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"input_idCheck\" value=false>";
 						}
 						// document.getElementById("idCheckResult2").innerHTML = "<td style=\"padding-top: 0px;\"><label>비밀번호</label></td>";
 						
@@ -33,14 +33,14 @@ function idCheck(){
 				})
 			}else{
 				document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이메일 주소를 입력해주세요.</P>";
-				document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
+				document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"input_idCheck\" value=false>";
 			}
 		}else{
 			document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">아이디는 6자 이상, 20자 미만으로 사용가능합니다.</P>";
-			document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
+			document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"input_idCheck\" value=false>";
 		}
 	}else{
 		document.getElementById("idCheckResult").innerHTML = "<p style=\"color: red;\">이메일 형태가 아닙니다.</P>";
-		document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"idCheck\" value=false>";
+		document.getElementById("idCheckResult3").innerHTML = "<input type=\"hidden\" name=\"input_idCheck\" value=false>";
 	}
 }
