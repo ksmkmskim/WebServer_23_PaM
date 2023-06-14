@@ -216,21 +216,22 @@
 			display: block;
 		}
 		
-		textarea[name=comment]{
-			width: 79%;
+		textarea{
+			width: 80.5%;
 			height: 64px;
 			margin-bottom: 7px;
-			line-height:26px;
+			line-height:20px;
 			border: black solid 1px;
 			border-radius: 5px;
 			box-shadow: 0 0 6px -4px black;
 			resize: none;
+			white-space: pre-wrap;
 			font-family: 'Pretendard Variable';
 		}
 		
 		input[type=submit]{
 			padding: 6px 27px;
-			margin-left: 74.5%;
+			margin-left: 76%;
 			background-color: #F2F5F5;
 			border: 1px solid black;
 			border-radius: 5px;
@@ -245,6 +246,23 @@
 			background-color: #8F8F8F;
 		}
 		
+		input[type=button]{
+			padding: 6px 27px;
+			margin-left: 76%;
+			background-color: #F2F5F5;
+			border: 1px solid black;
+			border-radius: 5px;
+			box-shadow: 0 0 5px -4px black;
+			font-size: 15px;
+			font-weight: bold;
+			font-family: 'Pretendard Variable';
+			cursor: pointer;
+		}
+		input[type=button]:hover{
+			color: white;
+			background-color: #8F8F8F;
+		}
+		
 		#cmts{
 			list-style-type: none;
 			padding: 0px 10%;
@@ -252,6 +270,7 @@
 		}
 		#cmts > li{
 			display: inline-block;
+			min-width: -webkit-fill-available;
 		}
 		
 		.cmt{
@@ -260,9 +279,10 @@
 			text-align: left;
 			font-family: 'Pretendard Variable';
 		}
-		.cmt > p{
+		.cmt > div{
 			margin: 4px 0px;
 			display: inline-block;
+			word-break: break-all;
 		}
 		.cmt > span > p{
 			display: inline-block;
@@ -308,6 +328,18 @@
 			font-weight: bold;
 		}
 		
+		.cmt > form > textarea[name=revComment]{
+			width: 100%;
+		}
+		.cmt > form > input[type=submit]{
+			margin: 0;
+			float: right;
+		}
+		.cmt > form > input[type=button]{
+			margin-right: 10px;
+			float: right;
+		}
+		
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/PaM/src/Javascript/getPostInfo.js"></script>	<!-- getPostInfo() -->
@@ -316,7 +348,8 @@
 	<script src="/PaM/src/Javascript/chkPerm.js"></script>  <!-- revisePost() -->
 	<script src="/PaM/src/Javascript/deletePost.js"></script>  <!-- deletePost() -->
 	<script src="/PaM/src/Javascript/addComment.js"></script>  <!-- addComment() -->
-	<script src="/PaM/src/Javascript/deleteCmt.js"></script>  <!-- addComment() -->
+	<script src="/PaM/src/Javascript/deleteCmt.js"></script>  <!-- deleteCmt() -->
+	<script src="/PaM/src/Javascript/reviseCmt.js"></script>  <!-- reviseCmt() -->
 	<script>cmt_cpage = 1;</script>  <!-- current page = 1 -->
 <body>
 	<%@ include file="nav.jsp" %>	<!-- nav -->

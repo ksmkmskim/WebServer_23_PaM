@@ -71,7 +71,7 @@ public class CommentDAO {
 	
 	public void reviseComment(Comment c){
 		open();
-		String sql = "update comment_table set cmt_text=?, cmt_date=CURRENT_TIMESTAMP where cmt_id=?";
+		String sql = "update comment_table set cmt_text=? where cmt_id=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

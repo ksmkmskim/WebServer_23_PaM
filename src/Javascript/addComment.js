@@ -16,7 +16,9 @@ function addComment(pid){
 				cmt_text : $(cmt_text).val()
 			},
 	        success : function(data){
+				$(cmt_text).val('');
 				$('#cmts').empty();
+				$('#cmt_pages').empty();
 				getCommentInfo(cmt_post_id);
 			},
 			error : function(request,status,error){

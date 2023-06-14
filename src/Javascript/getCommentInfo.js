@@ -30,16 +30,16 @@ function getCommentInfo(pid){
 		           	var $cmt_rev_btn = $('<span>수정</span>');
 		           	var $cmt_del_btn = $('<span>삭제</span>');
 		           	var $cmt_br = $('<br>');
-		           	var $cmt_text = $('<p>'+cmt_text+'</p>');
+		           	var $cmt_text = $('<div>'+cmt_text+'</div>');
 		           	
 		           	$cmt_div.append($cmt_info);
 		           	
 		           	if(cmt_user_id == sessionStorage.getItem('sign_in_user_id')){
-						$cmt_del_btn.on('click',{cmt_id:cmt_id},(e) => reviseCmt(e.data.cmt_id));
+						$cmt_rev_btn.on('click',{cmt_id:cmt_id},(e) => reviseCmt(e, e.data.cmt_id));
 						$cmt_btns.append($cmt_rev_btn);
 					}
 					if(cmt_user_id == sessionStorage.getItem('sign_in_user_id') || sessionStorage.getItem('sign_in_user_perm') == 3){
-						$cmt_del_btn.on('click',{cmt_id:cmt_id, cmt_hr:$cmt_hr, cmt_li:$cmt_li},(e) => deleteCmt(e.data.cmt_id, e.data.cmt_hr, e.data.cmt_li));
+						$cmt_del_btn.on('click',{cmt_id:cmt_id, cmt_post_id:cmt_post_id, cmt_hr:$cmt_hr, cmt_li:$cmt_li},(e) => deleteCmt(e.data.cmt_id, e.data.cmt_post_id,e.data.cmt_hr, e.data.cmt_li));
 						$cmt_btns.append(' ');
 						$cmt_btns.append($cmt_del_btn);
 					}
