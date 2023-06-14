@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 public class DeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String MAIN_PAGE = "/pages/mainpage.jsp";
+	final String IMG_PATH="D:/Git/WebServer_23_PaM/database";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,6 +32,7 @@ public class DeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		PostDAO pdao = new PostDAO();
 		Post p = pdao.getPost(pid);
@@ -38,7 +40,7 @@ public class DeleteController extends HttpServlet {
 		
 		for(String img : img_list) {
 		    	
-			File file = new File("D:/Git/WebServer_23_PaM/database" + img);
+			File file = new File(IMG_PATH + img);
 			    
 			   if( file.exists() ){
 			   	if(file.delete()){

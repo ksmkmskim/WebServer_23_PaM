@@ -52,6 +52,7 @@
 		
 		td{
 			padding-top: 35px;
+			font-family: 'Pretendard Variable';
 		}
 		
 		input{
@@ -95,6 +96,16 @@
 			text-decoration: none;
 			color: black;
 		}
+		
+		#link{
+			font-family: 'Pretendard Variable';
+		}
+		#link > td > a{
+			cursor: pointer;
+		}
+		#link > td > a:hover{
+			text-decoration: underline;
+		}
 	</style>
 </head>
 <body>
@@ -119,9 +130,9 @@
 					</tr>
 					<tr id="link">
 						<td rowspan="3">
-						<a href="/PaM/SearchId">아이디/비밀번호 찾기</a>
-						<h3>/</h3>
-						<a href="/PaM/signup">회원가입</a>
+							<a href="/PaM/SearchId">아이디/비밀번호 찾기</a>
+							<h3>/</h3>
+							<a href="/PaM/signup">회원가입</a>
 						</td>
 					</tr>
 				</table>

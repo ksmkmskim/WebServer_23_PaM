@@ -18,6 +18,7 @@ public class PostDAO {
 	final String JDBC_USER = "admin";
 	final String JDBC_PASSWD = "admin";
 	// JDBC_URL 로컬 환경마다 변경 필요 -> 학교 서버에 구축해서 vpn으로 접속해서 사용할 수 있도록 하면 좋을 듯
+	final String IMG_PATH="D:/Git/WebServer_23_PaM/database";
 	
 	public void open() {
 		try {
@@ -107,7 +108,7 @@ public class PostDAO {
 				
 				for(String img : del_imgs) {
 			    	
-					File file = new File("C:\\Users\\Administrator\\Desktop\\4-1\\웹서버프로그래밍\\기말프로젝트\\project\\database\\post_img" + img);
+					File file = new File(IMG_PATH + img);
 					    
 					   if( file.exists() ){
 					   	if(file.delete()){
@@ -237,9 +238,9 @@ public class PostDAO {
 		}
 		if(!search_n.isEmpty()) {
 			if(flag) {
-				sql += " and car_name like '%" + search_n + "%'";
+				sql += " and lower(car_name) like lower('%" + search_n + "%')";
 			} else {
-				sql += " where car_name like '%" + search_n + "%'";
+				sql += " where lower(car_name) like lower('%" + search_n + "%')";
 			}
 		}
 		sql += ";";

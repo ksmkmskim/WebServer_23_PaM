@@ -17,7 +17,7 @@
 						<script>sessionStorage.clear()</script>
 					</c:if>
 					<c:if test="${sessionScope.sign_in_user != null}">
-						<a href="https://www.naver.com">${sessionScope.sign_in_user.user_name}</a>
+						<a href="">${sessionScope.sign_in_user.user_name}</a>
 						<script>sessionStorage.setItem('sign_in_user_id', '${sessionScope.sign_in_user.user_id}')</script>
 						<script>sessionStorage.setItem('sign_in_user_perm', '${sessionScope.sign_in_user.user_permission}')</script>
 					</c:if>
@@ -38,7 +38,7 @@
 				<li><img src="/PaM/src/img/menu_img.png"></li>
 				<li><div class="menu"><a href="/PaM/main">HOME</a></div></li>
 				<li><div class="menu">SERVICE</div></li>
-				<li><div class="menu">ABOUT US</div></li>
+				<li><div class="menu"><a href="/PaM/about">ABOUT US</a></div></li>
 				<li><div class="menu">CONTACT</div></li>
 			</ul>
 		</div>

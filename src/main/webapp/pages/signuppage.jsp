@@ -111,7 +111,7 @@
 </head>
 <body>
 	<div align="center" id="patAndMat"><a href="/PaM/main" >PAT & MAT</a></div>
-	<form>
+	<form action="javascript:;" onSubmit="userAdd()">
 		<div id="signupBox" align="center">
 			<table>
 				<tr class="labelTr">
@@ -166,7 +166,7 @@
 					<td id="idCheckResult3"></td>
 				</tr>
 				<tr class="labelTr">
-					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onClick="userAdd()" onsubmit="return false;"></td>
+					<td><input type="submit" id="signup_btn" class="btn" value="SIGN UP" onsubmit="return false;"></td>
 				</tr>		
 			</table>
 		</div>

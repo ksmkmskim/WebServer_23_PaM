@@ -21,7 +21,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 @WebServlet("/add")
 public class AddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String POSTUP_PAGE = "/pages/postuppage.jsp";   
+	private final String POSTUP_PAGE = "/pages/postuppage.jsp";
+	final String IMG_PATH="D:/Git/WebServer_23_PaM/database/post_img";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,9 +49,8 @@ public class AddController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String directory = "D:/Git/WebServer_23_PaM/database/post_img";
 		int sizeLimit = 100*1024*1024;	
-		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, IMG_PATH, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
 		// 지정경로에 파일 자동 저장됨
 		Post p = new Post();
 		List<String> img_list = new ArrayList<>();
