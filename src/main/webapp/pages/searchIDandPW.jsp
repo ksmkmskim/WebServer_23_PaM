@@ -166,7 +166,7 @@
 				<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: #364448; color: white;">
 				<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: white; color: #364448;">
 			</div>
-			<form action="javascript:;" onSubmit="submitSearchPw('searchPw', 'print')">
+			<form action="javascript:;" onSubmit="submitSearchPw('searchPw', 'print', 'newPw', 'searchPwID')">
 				<table>
 					<tr align="left">
 						<td><label>이메일 </label></td>
@@ -200,10 +200,10 @@
 		</div>
 		<div id="newPw" class="hidden">
 			<div id="choiceBtn">
-					<input type="button" id="choiceBtnLeft"  onClick="clickIdBtn('searchId', 'searchPw')" value='아이디 찾기' style="background-color: #364448; color: white;">
-					<input type="button" id="choiceBtnRight"  onClick="clickPwBtn('searchId', 'searchPw')" value='비밀번호 찾기' style="background-color: white; color: #364448;">
+					<input type="button" id="choiceBtnLeft" value='아이디 찾기' style="background-color: #364448; color: white;">
+					<input type="button" id="choiceBtnRight" value='비밀번호 찾기' style="background-color: white; color: #364448;">
 			</div>
-			<form name="" action="" method="post">
+			<form action="javascript:;" onSubmit="setPw()">
 				<table>
 					<tr align="left">
 						<td><label>새로운 비밀번호 </label></td>
@@ -218,11 +218,11 @@
 						<td class="inputTd"><input type="password" name="pwdCheck" placeholder="PASSWORD CHECK" required></td>
 					</tr>
 					<tr>
-						<td id="searchPwID"></td>
+						<td ><input type="hidden" id="searchPwID" name="searchPwID" value="" required></td>
 					</tr>
 					<tr>
 						<td style="padding-top: 25px; padding-bottom: 25px;">
-						<input type="submit" id="search_btn" class="btn" value="NEXT" onClick="setPw('newPw', 'print')">
+						<input type="submit" id="search_btn" class="btn" value="NEXT">
 						</td>
 					</tr>
 				</table>

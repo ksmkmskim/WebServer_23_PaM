@@ -52,7 +52,6 @@ public class IdCheckController extends HttpServlet {
 		
 		String result = om.writeValueAsString(get_u);
 		response.getWriter().write(result);
-		
 	}
 
 }

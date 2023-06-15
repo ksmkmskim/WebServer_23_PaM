@@ -100,11 +100,18 @@
 		#link{
 			font-family: 'Pretendard Variable';
 		}
+		#link > td > *{
+			display: inline-block;
+		}
 		#link > td > a{
 			cursor: pointer;
 		}
 		#link > td > a:hover{
 			text-decoration: underline;
+		}
+		#link > td > div{
+			padding-left: 30px;
+			padding-right: 30px;
 		}
 	</style>
 </head>
@@ -131,7 +138,7 @@
 					<tr id="link">
 						<td rowspan="3">
 							<a href="/PaM/SearchId">아이디/비밀번호 찾기</a>
-							<h3>/</h3>
+							<div><h3>/</h3></div>
 							<a href="/PaM/signup">회원가입</a>
 						</td>
 					</tr>

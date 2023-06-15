@@ -16,6 +16,7 @@
 	 document.getElementById(searchId).className = 'hidden';
 	 document.getElementById(print).className = 'exposed';
 	 
+	 
 	 var url= "http://localhost:8080/PaM//SearchId";
 	 let input_name = document.getElementsByName("name");
 	 let input_tel = document.getElementsByName("tel");
@@ -41,10 +42,9 @@
 	 })
  }
 
- function submitSearchPw(searchPw, print){
+ function submitSearchPw(searchPw, print, newPw, searchPwID){
 	 document.getElementById(searchPw).className = 'hidden';
-	 document.getElementById(print).className = 'exposed'; 
-	 //document.getElementById(newPw).className = 'exposed'; 
+	 
 	 
 	 var url= "http://localhost:8080/PaM/idCheck";
 	 let input_id = document.getElementsByName("id");
@@ -58,20 +58,22 @@
 			input_id : $(input_id).val() 
 		 },
 		 success : function(data){
-			 
+			 /*
+			 document.getElementById(print).className = 'exposed'; 
 			 if(data.user_name == $(input_name).val()){
 				 document.getElementById('itemIn').innerText = data.user_pw;
 			 } else{
 				 document.getElementById('itemIn').innerText = "정보를 찾을 수 없습니다.";
 			 }
+			 */
 			 
-			 /*
 			 if(data.user_name == $(input_name).val()){
-				document.getElementById('searchPwId').innerHTML= "<input type=\"hidden\" name=\"searchPwID\" value=\""+input_id+"\" required>"
+				document.getElementById(newPw).className = 'exposed'; 
+				document.getElementById(searchPwID).value = data.user_id;
 			 } else{
 				document.getElementById(searchPw).className = 'exposed';
 			 }
-			 */
+			 
 		 },
 		 error : function(request,status,error){
 			 alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
@@ -80,9 +82,7 @@
 	 })
  }
  
- function setPw(newPw, print){
-	 document.getElementById(newPw).className = 'hidden';
-	 document.getElementById(print).className = 'exposed';
+ function setPw(){
 	 
 	 var url= "http://localhost:8080/PaM/searchPw";
 	 let input_id = document.getElementsByName("searchPwID");
@@ -100,10 +100,10 @@
 			 },
 			 success : function(data){
 				 if(data.user_pw == $(input_pwd).val()){
-					 document.getElementById(print).innerText = "비밀번호 변경이 완료되었습니다.";
+					 alert("비밀번호 변경이 완료되었습니다.");
 					 location.href = '/PaM/login';
 				 }else{
-					 document.getElementById(print).innerText = "비밀번호 변경에 실패했습니다.";
+					 alert("비밀번호 변경에 실패했습니다.");
 					 location.href = '/PaM/searchPw';
 				 }
 			 },

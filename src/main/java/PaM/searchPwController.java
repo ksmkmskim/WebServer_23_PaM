@@ -43,18 +43,10 @@ public class searchPwController extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		
 		String input_id = request.getParameter("input_id");
-		String input_pw = request.getParameter("input_pw");
-		String input_name = request.getParameter("input_name");
-		String input_tel = request.getParameter("input_tel");
-		String input_addr = request.getParameter("input_addr");
-		int input_permission = Integer.parseInt(request.getParameter("input_permission"));
+		String input_pw = request.getParameter("input_pwd");
 		
 		user.setUser_id(input_id);
 		user.setUser_pw(input_pw);
-		user.setUser_name(input_name);
-		user.setUser_tel(input_tel);
-		user.setUser_addr(input_addr);
-		user.setUser_permission(input_permission);
 		System.out.println(user.getUser_id());
 		
 		udao.updateUser(user);
